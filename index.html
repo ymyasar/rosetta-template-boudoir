@@ -229,10 +229,11 @@ section{ position:relative; z-index:3; }
 }
 .gallery-track{
   display:flex;
-  gap:5px;
+  gap:12px;
   overflow-x:auto;
-  padding:0 64px 40px;
+  padding:0 80px 40px;
   scroll-snap-type:x mandatory;
+  scroll-padding-left:80px;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:thin;
   scrollbar-color:rgba(201,168,76,0.25) transparent;
@@ -245,10 +246,11 @@ section{ position:relative; z-index:3; }
 .gallery-slide{
   flex:0 0 auto;
   width:430px;
-  height:80vh;
+  height:65vh;
   scroll-snap-align:start;
   position:relative;
   overflow:hidden;
+  border-radius:4px;
 }
 .gallery-slide:nth-child(1){ background:linear-gradient(148deg,#1b1510 0%,#0a0806 100%); }
 .gallery-slide:nth-child(2){ background:linear-gradient(132deg,#130f0b 0%,#0c0904 100%); }
@@ -266,7 +268,7 @@ section{ position:relative; z-index:3; }
 .slide-vignette{
   position:absolute;
   inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 40%,transparent 50%,rgba(0,0,0,0.45) 100%);
+  background:rgba(0,0,0,0.20),radial-gradient(ellipse 80% 60% at 50% 40%,transparent 50%,rgba(0,0,0,0.45) 100%);
   pointer-events:none;
   z-index:2;
 }
@@ -809,8 +811,8 @@ footer{
   #the-space{ padding:60px 0 60px; }
   .space-header{ padding:0 24px 36px; }
   .space-title{ font-size:38px; }
-  .gallery-track{ padding:0 24px 24px; gap:4px; }
-  .gallery-slide{ width:78vw; height:62vh; }
+  .gallery-track{ padding:0 24px 24px; gap:10px; scroll-padding-left:24px; }
+  .gallery-slide{ width:78vw; height:55vh; }
   .space-hint{ padding:0 24px; }
   .slide-caption{ bottom:20px; left:22px; }
   #whats-included{ padding:60px 24px 56px; }
