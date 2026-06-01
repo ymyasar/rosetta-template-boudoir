@@ -194,16 +194,30 @@ section{ position:relative; z-index:3; }
   overflow:hidden;
 }
 .space-header{
-  padding:0 64px 48px;
+  padding:0 64px 52px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:0;
+}
+.space-supertitle{
+  font-size:9px;
+  letter-spacing:0.58em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  margin-bottom:16px;
+  opacity:0.7;
+}
+.space-header-row{
   display:flex;
   align-items:baseline;
-  gap:28px;
+  gap:24px;
 }
 .space-eyebrow{
   font-size:9px;
   letter-spacing:0.52em;
   text-transform:uppercase;
-  color:#C9A84C;
+  color:rgba(201,168,76,0.55);
 }
 .space-title{
   font-family:'Cormorant Garamond',serif;
@@ -217,7 +231,7 @@ section{ position:relative; z-index:3; }
   display:flex;
   gap:5px;
   overflow-x:auto;
-  padding:0 64px 36px;
+  padding:0 64px 40px;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:thin;
@@ -231,7 +245,7 @@ section{ position:relative; z-index:3; }
 .gallery-slide{
   flex:0 0 auto;
   width:430px;
-  height:530px;
+  height:80vh;
   scroll-snap-align:start;
   position:relative;
   overflow:hidden;
@@ -247,35 +261,22 @@ section{ position:relative; z-index:3; }
   opacity:0.06;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   pointer-events:none;
+  z-index:2;
 }
 .slide-vignette{
   position:absolute;
   inset:0;
-  background:radial-gradient(ellipse 70% 65% at 50% 50%,transparent 45%,rgba(0,0,0,0.55) 100%);
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,transparent 50%,rgba(0,0,0,0.45) 100%);
   pointer-events:none;
+  z-index:2;
 }
-.slide-inner{
+.slide-bottom-fade{
   position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-}
-.slide-inner::before,
-.slide-inner::after{
-  content:'';
-  display:block;
-  width:36px;
-  height:1px;
-  background:rgba(201,168,76,0.18);
-}
-.slide-ph-label{
-  font-size:8px;
-  letter-spacing:0.48em;
-  text-transform:uppercase;
-  color:rgba(201,168,76,0.22);
+  bottom:0;left:0;right:0;
+  height:38%;
+  background:linear-gradient(to top,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.4) 45%,transparent 100%);
+  pointer-events:none;
+  z-index:3;
 }
 .slide-photo{
   position:absolute;
@@ -284,34 +285,93 @@ section{ position:relative; z-index:3; }
   height:100%;
   object-fit:cover;
   display:block;
+  transition:transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+  z-index:1;
+}
+.gallery-slide:hover .slide-photo{
+  transform:scale(1.04);
+}
+.slide-caption{
+  position:absolute;
+  bottom:26px;
+  left:30px;
+  z-index:4;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.slide-caption-label{
+  font-size:8px;
+  letter-spacing:0.55em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.92);
+  transition:color 0.35s ease, letter-spacing 0.35s ease;
+}
+.gallery-slide:hover .slide-caption-label{
+  color:#C9A84C;
+  letter-spacing:0.62em;
+}
+.slide-caption-rule{
+  display:block;
+  width:0;
+  height:1px;
+  background:#C9A84C;
+  transition:width 0.5s ease;
+}
+.gallery-slide:hover .slide-caption-rule{
+  width:28px;
 }
 .slide-num{
   position:absolute;
-  bottom:22px;right:26px;
+  bottom:20px;right:24px;
   font-family:'Cormorant Garamond',serif;
   font-weight:300;
   font-size:76px;
   line-height:1;
-  color:rgba(255,255,255,0.12);
+  color:rgba(255,255,255,0.08);
   pointer-events:none;
   user-select:none;
+  z-index:4;
+  transition:color 0.35s ease;
+}
+.gallery-slide:hover .slide-num{
+  color:rgba(255,255,255,0.14);
 }
 .space-hint{
   padding:0 64px;
   font-size:9px;
   letter-spacing:0.42em;
   text-transform:uppercase;
-  color:rgba(201,168,76,0.32);
+  color:rgba(201,168,76,0.5);
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:16px;
 }
-.space-hint::before{
-  content:'';
+.space-hint-line{
   display:block;
   width:22px;
   height:1px;
-  background:rgba(201,168,76,0.22);
+  background:rgba(201,168,76,0.3);
+}
+.space-hint-arrows{
+  display:flex;
+  gap:3px;
+  align-items:center;
+}
+.space-hint-arrows span{
+  display:block;
+  width:5px;
+  height:5px;
+  border-right:1.5px solid rgba(201,168,76,0.6);
+  border-top:1.5px solid rgba(201,168,76,0.6);
+  transform:rotate(45deg);
+}
+.space-hint-arrows span:nth-child(1){ animation:chevron-march 1.6s ease-in-out infinite 0s; }
+.space-hint-arrows span:nth-child(2){ animation:chevron-march 1.6s ease-in-out infinite 0.15s; }
+.space-hint-arrows span:nth-child(3){ animation:chevron-march 1.6s ease-in-out infinite 0.3s; }
+@keyframes chevron-march{
+  0%,100%{ opacity:0.25; transform:rotate(45deg) translate(0,0); }
+  50%{ opacity:1; transform:rotate(45deg) translate(2px,-2px); }
 }
 
 /* ══════════════════════════════════════════════
@@ -747,11 +807,12 @@ footer{
   .nav-name{ font-size:16px; }
   #hero{ padding:100px 28px 80px; }
   #the-space{ padding:60px 0 60px; }
-  .space-header{ padding:0 24px 32px; flex-direction:column; gap:10px; }
+  .space-header{ padding:0 24px 36px; }
   .space-title{ font-size:38px; }
   .gallery-track{ padding:0 24px 24px; gap:4px; }
-  .gallery-slide{ width:280px; height:360px; }
+  .gallery-slide{ width:78vw; height:62vh; }
   .space-hint{ padding:0 24px; }
+  .slide-caption{ bottom:20px; left:22px; }
   #whats-included{ padding:60px 24px 56px; }
   .inc-grid{ grid-template-columns:repeat(2,1fr); }
   .inc-item{ padding:30px 22px 26px; }
@@ -811,42 +872,76 @@ footer{
 ══════════════════════════════════ -->
 <section id="the-space">
   <div class="space-header">
-    <span class="space-eyebrow">The Studio</span>
-    <span class="space-title">The Space</span>
+    <span class="space-supertitle">Step Inside</span>
+    <div class="space-header-row">
+      <span class="space-eyebrow">The Studio</span>
+      <span class="space-title">The Space</span>
+    </div>
   </div>
   <div class="gallery-track" id="gallery-track">
     <div class="gallery-slide">
       <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_exterior.jpg?fit=2048%2C1679&ssl=1" alt="Studio exterior"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
+      <div class="slide-bottom-fade"></div>
+      <div class="slide-caption">
+        <span class="slide-caption-rule"></span>
+        <span class="slide-caption-label">The Building</span>
+      </div>
       <div class="slide-num">01</div>
     </div>
     <div class="gallery-slide">
       <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_header2.jpg?fit=2048%2C1365&ssl=1" alt="Studio header"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
+      <div class="slide-bottom-fade"></div>
+      <div class="slide-caption">
+        <span class="slide-caption-rule"></span>
+        <span class="slide-caption-label">Studio Floor</span>
+      </div>
       <div class="slide-num">02</div>
     </div>
     <div class="gallery-slide">
       <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_studio306_00201.jpg?fit=2048%2C1365&ssl=1" alt="Studio 306"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
+      <div class="slide-bottom-fade"></div>
+      <div class="slide-caption">
+        <span class="slide-caption-rule"></span>
+        <span class="slide-caption-label">The Space</span>
+      </div>
       <div class="slide-num">03</div>
     </div>
     <div class="gallery-slide">
       <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_studio306_00191.jpg?fit=2048%2C1365&ssl=1" alt="Studio interior"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
+      <div class="slide-bottom-fade"></div>
+      <div class="slide-caption">
+        <span class="slide-caption-rule"></span>
+        <span class="slide-caption-label">Natural Light</span>
+      </div>
       <div class="slide-num">04</div>
     </div>
     <div class="gallery-slide">
       <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2019/04/SRD_Lounge_0005.jpg?fit=2048%2C1365&ssl=1" alt="Lounge area"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
+      <div class="slide-bottom-fade"></div>
+      <div class="slide-caption">
+        <span class="slide-caption-rule"></span>
+        <span class="slide-caption-label">The Lounge</span>
+      </div>
       <div class="slide-num">05</div>
     </div>
   </div>
-  <div class="space-hint">Drag to explore</div>
+  <div class="space-hint">
+    <span class="space-hint-line"></span>
+    Drag to explore
+    <div class="space-hint-arrows">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
 </section>
 
 <!-- ══════════════════════════════════
