@@ -605,7 +605,125 @@ section{ position:relative; z-index:3; }
 }
 
 /* ══════════════════════════════════════════════
-   5. LOCATION
+   5. FLOOR PLAN
+══════════════════════════════════════════════ */
+#floor-plan{
+  padding:100px 64px 100px;
+  background:#0a0806;
+  position:relative;
+  overflow:hidden;
+}
+#floor-plan::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 55% 50% at 80% 50%,rgba(201,168,76,0.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+.fp-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+  max-width:1280px;
+  margin:0 auto;
+  position:relative;
+}
+.fp-text{
+  display:flex;
+  flex-direction:column;
+}
+.fp-eyebrow{
+  display:block;
+  font-size:9px;
+  letter-spacing:0.52em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  margin-bottom:22px;
+}
+.fp-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(36px,4vw,58px);
+  color:#F5F0E8;
+  line-height:1.05;
+  margin-bottom:24px;
+}
+.fp-rule{
+  display:block;
+  width:28px;
+  height:1px;
+  background:#C9A84C;
+  margin-bottom:28px;
+}
+.fp-body{
+  font-size:13px;
+  line-height:1.95;
+  color:rgba(245,240,232,0.5);
+  margin-bottom:36px;
+  max-width:420px;
+}
+.fp-bullets{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.fp-bullet{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-size:10px;
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.75);
+}
+.fp-bullet::before{
+  content:'';
+  display:block;
+  width:14px;
+  height:1px;
+  background:#C9A84C;
+  flex-shrink:0;
+  opacity:0.6;
+}
+.fp-image-wrap{
+  position:relative;
+  border:1px solid rgba(201,168,76,0.18);
+  border-radius:2px;
+  overflow:hidden;
+  background:#0c0a07;
+}
+.fp-image-wrap::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  box-shadow:inset 0 0 0 1px rgba(201,168,76,0.08);
+  z-index:2;
+  pointer-events:none;
+  border-radius:2px;
+}
+.fp-image-wrap img{
+  display:block;
+  width:100%;
+  height:auto;
+  filter:brightness(0.88) contrast(1.04);
+  transition:filter 0.4s ease;
+}
+.fp-image-wrap:hover img{
+  filter:brightness(0.95) contrast(1.04);
+}
+
+@media(max-width:767px){
+  #floor-plan{ padding:60px 24px 60px; }
+  .fp-inner{ grid-template-columns:1fr; gap:44px; }
+  .fp-title{ font-size:34px; }
+  .fp-body{ max-width:100%; }
+}
+
+/* ══════════════════════════════════════════════
+   6. LOCATION
 ══════════════════════════════════════════════ */
 #location{
   padding:80px 64px 72px;
@@ -1111,7 +1229,35 @@ footer{
 </section>
 
 <!-- ══════════════════════════════════
-     5. LOCATION
+     5. FLOOR PLAN
+══════════════════════════════════ -->
+<section id="floor-plan">
+  <div class="fp-inner">
+
+    <!-- Left: text -->
+    <div class="fp-text">
+      <span class="fp-eyebrow">The Layout</span>
+      <div class="fp-title">Know The Space</div>
+      <span class="fp-rule"></span>
+      <p class="fp-body">Studio #306 includes the main studio with 14ft ceilings, a private lounge, kitchenette, bathroom, and direct elevator access. All rentals include use of the full floor.</p>
+      <ul class="fp-bullets">
+        <li class="fp-bullet">Studio &mdash; 14ft ceiling</li>
+        <li class="fp-bullet">Private Lounge &mdash; 9ft ceiling</li>
+        <li class="fp-bullet">Direct Access Elevator</li>
+        <li class="fp-bullet">Kitchenette &amp; Bathroom</li>
+      </ul>
+    </div>
+
+    <!-- Right: floor plan image -->
+    <div class="fp-image-wrap">
+      <img src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_floorplan.jpg?w=1076&h=1392&ssl=1" alt="Studio 306 floor plan"/>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     6. LOCATION
 ══════════════════════════════════ -->
 <section id="location">
   <span class="loc-eyebrow">Find Us</span>
