@@ -277,6 +277,14 @@ section{ position:relative; z-index:3; }
   text-transform:uppercase;
   color:rgba(201,168,76,0.22);
 }
+.slide-photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
 .slide-num{
   position:absolute;
   bottom:22px;right:26px;
@@ -284,7 +292,7 @@ section{ position:relative; z-index:3; }
   font-weight:300;
   font-size:76px;
   line-height:1;
-  color:rgba(201,168,76,0.05);
+  color:rgba(255,255,255,0.12);
   pointer-events:none;
   user-select:none;
 }
@@ -503,7 +511,7 @@ section{ position:relative; z-index:3; }
    5. LOCATION
 ══════════════════════════════════════════════ */
 #location{
-  padding:110px 64px 100px;
+  padding:80px 64px 72px;
   background:#0a0806;
   text-align:center;
   position:relative;
@@ -566,7 +574,7 @@ section{ position:relative; z-index:3; }
    6. BOOK
 ══════════════════════════════════════════════ */
 #book-section{
-  padding:110px 64px 130px;
+  padding:80px 64px 120px;
   background:#0f0d0a;
 }
 .book-header{
@@ -717,8 +725,8 @@ footer{
   .rates-grid{ grid-template-columns:1fr; gap:4px; }
   .rate-card{ padding:44px 36px 40px; }
   .rate-card:hover{ transform:none; }
-  #location{ padding:60px 24px 56px; }
-  #book-section{ padding:60px 24px 80px; }
+  #location{ padding:48px 24px 44px; }
+  #book-section{ padding:52px 24px 80px; }
   .book-title{ font-size:38px; }
   .b-grid{ grid-template-columns:1fr; }
   footer{ padding:36px 24px; flex-direction:column; gap:14px; }
@@ -772,33 +780,33 @@ footer{
   </div>
   <div class="gallery-track" id="gallery-track">
     <div class="gallery-slide">
+      <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_exterior.jpg?fit=2048%2C1679&ssl=1" alt="Studio exterior"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
-      <div class="slide-inner"><span class="slide-ph-label">Studio Floor</span></div>
       <div class="slide-num">01</div>
     </div>
     <div class="gallery-slide">
+      <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_header2.jpg?fit=2048%2C1365&ssl=1" alt="Studio header"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
-      <div class="slide-inner"><span class="slide-ph-label">Exposed Brick</span></div>
       <div class="slide-num">02</div>
     </div>
     <div class="gallery-slide">
+      <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_studio306_00201.jpg?fit=2048%2C1365&ssl=1" alt="Studio 306"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
-      <div class="slide-inner"><span class="slide-ph-label">Natural Light</span></div>
       <div class="slide-num">03</div>
     </div>
     <div class="gallery-slide">
+      <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2017/08/srd_studio306_00191.jpg?fit=2048%2C1365&ssl=1" alt="Studio interior"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
-      <div class="slide-inner"><span class="slide-ph-label">Lounge Area</span></div>
       <div class="slide-num">04</div>
     </div>
     <div class="gallery-slide">
+      <img class="slide-photo" src="https://i0.wp.com/studiorentaldallas.com/wp-content/uploads/2019/04/SRD_Lounge_0005.jpg?fit=2048%2C1365&ssl=1" alt="Lounge area"/>
       <div class="slide-grain"></div>
       <div class="slide-vignette"></div>
-      <div class="slide-inner"><span class="slide-ph-label">Gear Corner</span></div>
       <div class="slide-num">05</div>
     </div>
   </div>
