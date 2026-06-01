@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Studio Rental Dallas — The Cedars</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:#0f0d0a;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  color:#F5F0E8;
+}
+
+/* ── Global grain overlay ──────────────────── */
+.grain-fixed{
+  position:fixed;
+  inset:0;
+  opacity:0.038;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:2;
+}
+
+section{ position:relative; z-index:3; }
+
+/* ══════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════ */
+#site-nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:100;
+  padding:22px 52px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:linear-gradient(to bottom,rgba(10,8,6,0.88) 0%,transparent 100%);
+  transition:background 0.4s ease;
+}
+#site-nav.scrolled{
+  background:rgba(10,8,6,0.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,168,76,0.1);
+}
+.nav-name{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:18px;
+  color:#F5F0E8;
+  text-decoration:none;
+  letter-spacing:0.04em;
+}
+.nav-cta{
+  font-size:9px;
+  letter-spacing:0.38em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  border:1px solid rgba(201,168,76,0.4);
+  padding:10px 24px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:background 0.3s ease, border-color 0.3s ease;
+  background:transparent;
+}
+.nav-cta:hover{
+  background:rgba(201,168,76,0.1);
+  border-color:rgba(201,168,76,0.65);
+}
+
+/* ══════════════════════════════════════════════
+   1. HERO
+══════════════════════════════════════════════ */
+#hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 32px 100px;
+  position:relative;
+  overflow:hidden;
+}
+#hero::before{
+  content:'';
+  position:absolute;
+  top:0;left:50%;
+  transform:translateX(-50%);
+  width:130%;
+  height:75%;
+  background:radial-gradient(ellipse 80% 60% at 50% -5%,rgba(201,168,76,0.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-size:9px;
+  letter-spacing:0.55em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  margin-bottom:28px;
+  position:relative;
+  z-index:1;
+}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(56px,9vw,118px);
+  line-height:1.0;
+  color:#F5F0E8;
+  margin-bottom:26px;
+  position:relative;
+  z-index:1;
+}
+.hero-rule{
+  display:block;
+  width:28px;
+  height:1px;
+  background:#C9A84C;
+  margin:0 auto 28px;
+  position:relative;
+  z-index:1;
+}
+.hero-subtitle{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(17px,2.2vw,24px);
+  color:rgba(245,240,232,0.5);
+  margin-bottom:52px;
+  letter-spacing:0.03em;
+  position:relative;
+  z-index:1;
+}
+.hero-cta{
+  display:inline-block;
+  background:#C9A84C;
+  color:#0c0a07;
+  font-family:'Inter',sans-serif;
+  font-size:10px;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  padding:20px 52px;
+  text-decoration:none;
+  cursor:pointer;
+  border:none;
+  transition:background 0.3s ease, box-shadow 0.3s ease;
+  position:relative;
+  z-index:1;
+}
+.hero-cta:hover{
+  background:#d9b650;
+  box-shadow:0 0 30px rgba(201,168,76,0.3);
+}
+.scroll-hint{
+  position:absolute;
+  bottom:36px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  z-index:1;
+  animation:hint-bounce 2.5s ease-in-out infinite;
+}
+.scroll-hint span{
+  font-size:8px;
+  letter-spacing:0.45em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.4);
+}
+.scroll-hint-line{
+  width:1px;
+  height:36px;
+  background:linear-gradient(to bottom,rgba(201,168,76,0.45) 0%,transparent 100%);
+}
+@keyframes hint-bounce{
+  0%,100%{transform:translateX(-50%) translateY(0);opacity:0.65;}
+  50%{transform:translateX(-50%) translateY(10px);opacity:1;}
+}
+
+/* ══════════════════════════════════════════════
+   2. THE SPACE
+══════════════════════════════════════════════ */
+#the-space{
+  padding:110px 0 88px;
+  background:linear-gradient(to bottom,#0f0d0a 0%,#121008 100%);
+  overflow:hidden;
+}
+.space-header{
+  padding:0 64px 48px;
+  display:flex;
+  align-items:baseline;
+  gap:28px;
+}
+.space-eyebrow{
+  font-size:9px;
+  letter-spacing:0.52em;
+  text-transform:uppercase;
+  color:#C9A84C;
+}
+.space-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:54px;
+  color:#F5F0E8;
+  line-height:1;
+}
+.gallery-track{
+  display:flex;
+  gap:5px;
+  overflow-x:auto;
+  padding:0 64px 36px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(201,168,76,0.25) transparent;
+  cursor:grab;
+}
+.gallery-track:active{ cursor:grabbing; }
+.gallery-track::-webkit-scrollbar{ height:2px; }
+.gallery-track::-webkit-scrollbar-track{ background:transparent; }
+.gallery-track::-webkit-scrollbar-thumb{ background:rgba(201,168,76,0.25); border-radius:2px; }
+.gallery-slide{
+  flex:0 0 auto;
+  width:430px;
+  height:530px;
+  scroll-snap-align:start;
+  position:relative;
+  overflow:hidden;
+}
+.gallery-slide:nth-child(1){ background:linear-gradient(148deg,#1b1510 0%,#0a0806 100%); }
+.gallery-slide:nth-child(2){ background:linear-gradient(132deg,#130f0b 0%,#0c0904 100%); }
+.gallery-slide:nth-child(3){ background:linear-gradient(158deg,#0f0c09 0%,#080602 100%); }
+.gallery-slide:nth-child(4){ background:linear-gradient(122deg,#1a1410 0%,#0d0a06 100%); }
+.gallery-slide:nth-child(5){ background:linear-gradient(142deg,#120e0a 0%,#090704 100%); }
+.slide-grain{
+  position:absolute;
+  inset:0;
+  opacity:0.06;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.slide-vignette{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 70% 65% at 50% 50%,transparent 45%,rgba(0,0,0,0.55) 100%);
+  pointer-events:none;
+}
+.slide-inner{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+.slide-inner::before,
+.slide-inner::after{
+  content:'';
+  display:block;
+  width:36px;
+  height:1px;
+  background:rgba(201,168,76,0.18);
+}
+.slide-ph-label{
+  font-size:8px;
+  letter-spacing:0.48em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.22);
+}
+.slide-num{
+  position:absolute;
+  bottom:22px;right:26px;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:76px;
+  line-height:1;
+  color:rgba(201,168,76,0.05);
+  pointer-events:none;
+  user-select:none;
+}
+.space-hint{
+  padding:0 64px;
+  font-size:9px;
+  letter-spacing:0.42em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.32);
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.space-hint::before{
+  content:'';
+  display:block;
+  width:22px;
+  height:1px;
+  background:rgba(201,168,76,0.22);
+}
+
+/* ══════════════════════════════════════════════
+   3. WHAT'S INCLUDED
+══════════════════════════════════════════════ */
+#whats-included{
+  padding:110px 64px 100px;
+  background:#0a0806;
+}
+.inc-header{
+  margin-bottom:60px;
+  text-align:center;
+}
+.inc-eyebrow{
+  display:block;
+  font-size:9px;
+  letter-spacing:0.52em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  margin-bottom:20px;
+}
+.inc-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(38px,5vw,60px);
+  color:#F5F0E8;
+  line-height:1.05;
+  margin-bottom:22px;
+}
+.inc-rule{
+  display:block;
+  width:28px;
+  height:1px;
+  background:#C9A84C;
+  margin:0 auto;
+}
+.inc-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:2px;
+  max-width:1280px;
+  margin:0 auto;
+}
+.inc-item{
+  background:#0d0b08;
+  border:1px solid rgba(201,168,76,0.07);
+  padding:42px 34px;
+  position:relative;
+  overflow:hidden;
+  transition:border-color 0.3s ease, background 0.3s ease;
+}
+.inc-item:hover{
+  border-color:rgba(201,168,76,0.2);
+  background:#100e0b;
+}
+.inc-item-rule{
+  display:block;
+  width:20px;
+  height:1px;
+  background:#C9A84C;
+  margin-bottom:18px;
+  opacity:0.65;
+}
+.inc-item-text{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:20px;
+  color:#F5F0E8;
+  line-height:1.3;
+}
+.inc-item-num{
+  position:absolute;
+  top:18px;right:20px;
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:52px;
+  color:rgba(201,168,76,0.04);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+}
+
+/* ══════════════════════════════════════════════
+   4. RATES
+══════════════════════════════════════════════ */
+#rates{
+  padding:110px 64px 100px;
+  background:#0f0d0a;
+}
+.rates-header{
+  text-align:center;
+  margin-bottom:68px;
+}
+.rates-eyebrow{
+  display:block;
+  font-size:9px;
+  letter-spacing:0.52em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  margin-bottom:20px;
+}
+.rates-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(38px,5vw,60px);
+  color:#F5F0E8;
+  line-height:1.05;
+}
+.rates-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  max-width:1060px;
+  margin:0 auto;
+}
+.rate-card{
+  background:#0d0b08;
+  border:1px solid rgba(201,168,76,0.1);
+  padding:56px 48px 52px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:border-color 0.35s ease, transform 0.35s ease, background 0.3s ease;
+}
+.rate-card:hover{
+  border-color:rgba(201,168,76,0.3);
+  transform:translateY(-6px);
+  background:#100e0b;
+}
+.rate-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:rgba(201,168,76,0);
+  transition:background 0.35s ease;
+}
+.rate-card:hover::before{ background:rgba(201,168,76,0.4); }
+.rate-tier{
+  font-size:9px;
+  letter-spacing:0.52em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  margin-bottom:24px;
+}
+.rate-name{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:38px;
+  color:#F5F0E8;
+  line-height:1.08;
+  margin-bottom:10px;
+}
+.rate-duration{
+  font-size:10px;
+  letter-spacing:0.38em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.55);
+  margin-bottom:36px;
+}
+.rate-rule{
+  display:block;
+  width:28px;
+  height:1px;
+  background:rgba(201,168,76,0.28);
+  margin:0 auto 28px;
+}
+.rate-price{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:20px;
+  color:rgba(201,168,76,0.82);
+  margin-bottom:32px;
+}
+.rate-cta{
+  display:inline-block;
+  font-size:9px;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  border:1px solid rgba(201,168,76,0.38);
+  padding:12px 30px;
+  cursor:pointer;
+  text-decoration:none;
+  transition:background 0.3s ease, border-color 0.3s ease;
+}
+.rate-cta:hover{
+  background:rgba(201,168,76,0.1);
+  border-color:rgba(201,168,76,0.65);
+}
+
+/* ══════════════════════════════════════════════
+   5. LOCATION
+══════════════════════════════════════════════ */
+#location{
+  padding:110px 64px 100px;
+  background:#0a0806;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+#location::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(201,168,76,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.loc-eyebrow{
+  display:block;
+  font-size:9px;
+  letter-spacing:0.52em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  margin-bottom:24px;
+  position:relative;
+}
+.loc-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(36px,5vw,58px);
+  color:#F5F0E8;
+  line-height:1.05;
+  margin-bottom:28px;
+  position:relative;
+}
+.loc-rule{
+  display:block;
+  width:28px;
+  height:1px;
+  background:#C9A84C;
+  margin:0 auto 28px;
+  position:relative;
+}
+.loc-address{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:24px;
+  color:rgba(245,240,232,0.8);
+  margin-bottom:18px;
+  letter-spacing:0.02em;
+  line-height:1.55;
+  position:relative;
+}
+.loc-sub{
+  font-size:11px;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.5);
+  line-height:1.8;
+  position:relative;
+}
+
+/* ══════════════════════════════════════════════
+   6. BOOK
+══════════════════════════════════════════════ */
+#book-section{
+  padding:110px 64px 130px;
+  background:#0f0d0a;
+}
+.book-header{
+  text-align:center;
+  margin-bottom:68px;
+}
+.book-eyebrow{
+  display:block;
+  font-size:9px;
+  letter-spacing:0.52em;
+  text-transform:uppercase;
+  color:#C9A84C;
+  margin-bottom:20px;
+}
+.book-title{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(38px,5vw,60px);
+  color:#F5F0E8;
+  line-height:1.05;
+  margin-bottom:22px;
+}
+.book-rule{
+  display:block;
+  width:28px;
+  height:1px;
+  background:#C9A84C;
+  margin:0 auto;
+}
+.book-form-wrap{
+  max-width:700px;
+  margin:0 auto;
+}
+.b-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 36px;
+}
+.b-field{ margin-bottom:30px; }
+.b-label-text{
+  display:block;
+  font-size:9px;
+  letter-spacing:0.42em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.58);
+  margin-bottom:10px;
+}
+.b-input{
+  display:block;
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(201,168,76,0.2);
+  color:#F5F0E8;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:17px;
+  padding:12px 0;
+  outline:none;
+  transition:border-color 0.3s ease;
+  -webkit-appearance:none;
+  appearance:none;
+  border-radius:0;
+}
+.b-input::placeholder{
+  color:rgba(245,240,232,0.22);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+}
+.b-input:focus{ border-bottom-color:rgba(201,168,76,0.52); }
+select.b-input{
+  background:#0f0d0a;
+  cursor:pointer;
+}
+select.b-input option{
+  background:#0f0d0a;
+  color:#F5F0E8;
+}
+textarea.b-input{ resize:none; }
+.b-submit{
+  display:block;
+  width:100%;
+  background:transparent;
+  border:1px solid rgba(201,168,76,0.45);
+  color:#C9A84C;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:19px;
+  padding:20px;
+  cursor:pointer;
+  letter-spacing:0.05em;
+  margin-top:12px;
+  transition:background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.b-submit:hover{
+  background:rgba(201,168,76,0.08);
+  border-color:rgba(201,168,76,0.7);
+  box-shadow:0 0 24px rgba(201,168,76,0.1);
+}
+
+/* ── Footer ──────────────────────────────────── */
+footer{
+  background:#0a0806;
+  border-top:1px solid rgba(201,168,76,0.08);
+  padding:52px 64px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  z-index:3;
+}
+.footer-name{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:22px;
+  color:rgba(245,240,232,0.8);
+}
+.footer-meta{
+  font-size:9px;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:#444;
+  text-align:right;
+  line-height:1.9;
+}
+
+/* ══════════════════════════════════════════════
+   MOBILE
+══════════════════════════════════════════════ */
+@media(max-width:767px){
+  #lampCanvas{ display:none !important; }
+  #site-nav{ padding:16px 24px; }
+  .nav-name{ font-size:16px; }
+  #hero{ padding:100px 28px 80px; }
+  #the-space{ padding:60px 0 60px; }
+  .space-header{ padding:0 24px 32px; flex-direction:column; gap:10px; }
+  .space-title{ font-size:38px; }
+  .gallery-track{ padding:0 24px 24px; gap:4px; }
+  .gallery-slide{ width:280px; height:360px; }
+  .space-hint{ padding:0 24px; }
+  #whats-included{ padding:60px 24px 56px; }
+  .inc-grid{ grid-template-columns:repeat(2,1fr); }
+  .inc-item{ padding:28px 22px; }
+  .inc-item-text{ font-size:17px; }
+  #rates{ padding:60px 24px 56px; }
+  .rates-grid{ grid-template-columns:1fr; gap:4px; }
+  .rate-card{ padding:44px 36px 40px; }
+  .rate-card:hover{ transform:none; }
+  #location{ padding:60px 24px 56px; }
+  #book-section{ padding:60px 24px 80px; }
+  .book-title{ font-size:38px; }
+  .b-grid{ grid-template-columns:1fr; }
+  footer{ padding:36px 24px; flex-direction:column; gap:14px; }
+  .footer-meta{ text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Light rays canvas -->
+<canvas id="dust-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+<!-- Dust particles canvas -->
+<canvas id="particles-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
+<!-- Spotlight top -->
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 80% 50% at 50% -5%,rgba(255,235,180,0.12) 0%,transparent 70%);"></div>
+<!-- Spotlight bottom -->
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 60% 40% at 50% 105%,rgba(255,220,150,0.07) 0%,transparent 65%);"></div>
+<!-- Swinging lamp -->
+<canvas id="lampCanvas" style="position:fixed;top:0;left:0;width:300px;height:500px;z-index:999;pointer-events:none;"></canvas>
+<!-- Global grain -->
+<div class="grain-fixed"></div>
+
+<!-- ── Navigation ──────────────────────────────── -->
+<nav id="site-nav">
+  <a href="#hero" class="nav-name">Studio Rental Dallas</a>
+  <a href="#book-section" class="nav-cta">Book the Studio</a>
+</nav>
+
+<!-- ══════════════════════════════════
+     1. HERO
+══════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-eyebrow">The Cedars &mdash; Dallas, TX</div>
+  <h1 class="hero-title" data-af="business-name">Studio Rental<br>Dallas</h1>
+  <span class="hero-rule"></span>
+  <p class="hero-subtitle" data-af="tagline">The Cedars, Dallas &mdash; Where Creatives Work</p>
+  <a href="#book-section" class="hero-cta">Check Availability</a>
+  <div class="scroll-hint">
+    <span>Explore</span>
+    <div class="scroll-hint-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     2. THE SPACE
+══════════════════════════════════ -->
+<section id="the-space">
+  <div class="space-header">
+    <span class="space-eyebrow">The Studio</span>
+    <span class="space-title">The Space</span>
+  </div>
+  <div class="gallery-track" id="gallery-track">
+    <div class="gallery-slide">
+      <div class="slide-grain"></div>
+      <div class="slide-vignette"></div>
+      <div class="slide-inner"><span class="slide-ph-label">Studio Floor</span></div>
+      <div class="slide-num">01</div>
+    </div>
+    <div class="gallery-slide">
+      <div class="slide-grain"></div>
+      <div class="slide-vignette"></div>
+      <div class="slide-inner"><span class="slide-ph-label">Exposed Brick</span></div>
+      <div class="slide-num">02</div>
+    </div>
+    <div class="gallery-slide">
+      <div class="slide-grain"></div>
+      <div class="slide-vignette"></div>
+      <div class="slide-inner"><span class="slide-ph-label">Natural Light</span></div>
+      <div class="slide-num">03</div>
+    </div>
+    <div class="gallery-slide">
+      <div class="slide-grain"></div>
+      <div class="slide-vignette"></div>
+      <div class="slide-inner"><span class="slide-ph-label">Lounge Area</span></div>
+      <div class="slide-num">04</div>
+    </div>
+    <div class="gallery-slide">
+      <div class="slide-grain"></div>
+      <div class="slide-vignette"></div>
+      <div class="slide-inner"><span class="slide-ph-label">Gear Corner</span></div>
+      <div class="slide-num">05</div>
+    </div>
+  </div>
+  <div class="space-hint">Drag to explore</div>
+</section>
+
+<!-- ══════════════════════════════════
+     3. WHAT'S INCLUDED
+══════════════════════════════════ -->
+<section id="whats-included">
+  <div class="inc-header">
+    <span class="inc-eyebrow">Every Booking</span>
+    <div class="inc-title">What&rsquo;s Included</div>
+    <span class="inc-rule"></span>
+  </div>
+  <div class="inc-grid">
+    <div class="inc-item">
+      <span class="inc-item-rule"></span>
+      <div class="inc-item-text">Original<br>Wood Floors</div>
+      <div class="inc-item-num">01</div>
+    </div>
+    <div class="inc-item">
+      <span class="inc-item-rule"></span>
+      <div class="inc-item-text">Exposed<br>Brick Walls</div>
+      <div class="inc-item-num">02</div>
+    </div>
+    <div class="inc-item">
+      <span class="inc-item-rule"></span>
+      <div class="inc-item-text">Full Gear<br>Selection</div>
+      <div class="inc-item-num">03</div>
+    </div>
+    <div class="inc-item">
+      <span class="inc-item-rule"></span>
+      <div class="inc-item-text">Private<br>Lounge</div>
+      <div class="inc-item-num">04</div>
+    </div>
+    <div class="inc-item">
+      <span class="inc-item-rule"></span>
+      <div class="inc-item-text">Garage Load<br>In &amp; Out</div>
+      <div class="inc-item-num">05</div>
+    </div>
+    <div class="inc-item">
+      <span class="inc-item-rule"></span>
+      <div class="inc-item-text">Direct Access<br>Elevator</div>
+      <div class="inc-item-num">06</div>
+    </div>
+    <div class="inc-item">
+      <span class="inc-item-rule"></span>
+      <div class="inc-item-text">14ft Studio<br>Ceiling</div>
+      <div class="inc-item-num">07</div>
+    </div>
+    <div class="inc-item">
+      <span class="inc-item-rule"></span>
+      <div class="inc-item-text">Minutes from<br>Downtown</div>
+      <div class="inc-item-num">08</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     4. RATES
+══════════════════════════════════ -->
+<section id="rates">
+  <div class="rates-header">
+    <span class="rates-eyebrow">Transparent Pricing</span>
+    <div class="rates-title">Studio Rates</div>
+  </div>
+  <div class="rates-grid">
+    <div class="rate-card">
+      <div class="rate-tier">Full Day</div>
+      <div class="rate-name" data-af="pkg1-name">Full Day</div>
+      <div class="rate-duration" data-af="pkg1-desc">10 Hours</div>
+      <span class="rate-rule"></span>
+      <div class="rate-price" data-af="pkg1-price">Contact for rates</div>
+      <a href="#book-section" class="rate-cta">Inquire</a>
+    </div>
+    <div class="rate-card">
+      <div class="rate-tier">Half Day</div>
+      <div class="rate-name" data-af="pkg2-name">Half Day</div>
+      <div class="rate-duration" data-af="pkg2-desc">5 Hours</div>
+      <span class="rate-rule"></span>
+      <div class="rate-price" data-af="pkg2-price">Contact for rates</div>
+      <a href="#book-section" class="rate-cta">Inquire</a>
+    </div>
+    <div class="rate-card">
+      <div class="rate-tier">Hourly</div>
+      <div class="rate-name" data-af="pkg3-name">Hourly</div>
+      <div class="rate-duration" data-af="pkg3-desc">2hr minimum</div>
+      <span class="rate-rule"></span>
+      <div class="rate-price" data-af="pkg3-price">Contact for rates</div>
+      <a href="#book-section" class="rate-cta">Inquire</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     5. LOCATION
+══════════════════════════════════ -->
+<section id="location">
+  <span class="loc-eyebrow">Find Us</span>
+  <div class="loc-title">The Cedars, Dallas</div>
+  <span class="loc-rule"></span>
+  <div class="loc-address" data-af="address">2401 S. Ervay St. Suite 306<br>Dallas TX 75215</div>
+  <div class="loc-sub" data-af="location-sub">Just minutes from Downtown Dallas<br>and both major airports</div>
+</section>
+
+<!-- ══════════════════════════════════
+     6. BOOK
+══════════════════════════════════ -->
+<section id="book-section">
+  <div class="book-header">
+    <span class="book-eyebrow">Reserve Your Date</span>
+    <div class="book-title">Book the Studio</div>
+    <span class="book-rule"></span>
+  </div>
+  <div class="book-form-wrap">
+    <form onsubmit="return false;">
+      <div class="b-grid">
+        <div class="b-field">
+          <label class="b-label-text">Name</label>
+          <input class="b-input" type="text" placeholder="Your full name"/>
+        </div>
+        <div class="b-field">
+          <label class="b-label-text">Email</label>
+          <input class="b-input" type="email" placeholder="your@email.com"/>
+        </div>
+        <div class="b-field">
+          <label class="b-label-text">Phone</label>
+          <input class="b-input" type="tel" placeholder="+1 (214) 000-0000"/>
+        </div>
+        <div class="b-field">
+          <label class="b-label-text">Preferred Date</label>
+          <input class="b-input" type="text" placeholder="MM / DD / YYYY"/>
+        </div>
+      </div>
+      <div class="b-field">
+        <label class="b-label-text">Session Type</label>
+        <select class="b-input">
+          <option value="" disabled selected>Select a session type</option>
+          <option value="full-day">Full Day (10 Hours)</option>
+          <option value="half-day">Half Day (5 Hours)</option>
+          <option value="hourly">Hourly (2hr min)</option>
+        </select>
+      </div>
+      <div class="b-field">
+        <label class="b-label-text">Message</label>
+        <textarea class="b-input" rows="4" placeholder="Tell us about your project&hellip;"></textarea>
+      </div>
+      <button type="submit" class="b-submit">Send Inquiry</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span class="footer-name">Studio Rental Dallas</span>
+  <div class="footer-meta">
+    <div>2401 S. Ervay St. Suite 306</div>
+    <div>The Cedars &mdash; Dallas TX 75215</div>
+    <div style="margin-top:6px;color:#2a2a2a;">MMXXVI</div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════ -->
+<script>
+/* Nav scroll state */
+(function(){
+  var nav = document.getElementById('site-nav');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive:true });
+})();
+</script>
+
+<script>
+/* Gallery drag scroll */
+(function(){
+  var track = document.getElementById('gallery-track');
+  if(!track) return;
+  var isDown=false, startX, scrollL;
+  track.addEventListener('mousedown', function(e){
+    isDown=true; startX=e.pageX-track.offsetLeft; scrollL=track.scrollLeft;
+  });
+  track.addEventListener('mouseleave', function(){ isDown=false; });
+  track.addEventListener('mouseup',    function(){ isDown=false; });
+  track.addEventListener('mousemove',  function(e){
+    if(!isDown) return;
+    e.preventDefault();
+    track.scrollLeft = scrollL - (e.pageX-track.offsetLeft-startX)*1.6;
+  });
+})();
+</script>
+
+<script>
+/* Light rays */
+(function(){
+  var canvas=document.getElementById('dust-canvas');
+  var ctx=canvas.getContext('2d');
+  var W, H;
+  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+  window.addEventListener('resize', resize);
+  window.addEventListener('orientationchange', function(){ setTimeout(resize,200); });
+  if(window.visualViewport) window.visualViewport.addEventListener('resize', resize);
+  resize();
+  var TAU=Math.PI*2, t=0;
+  var beams=[
+    {base:-0.45,spread:0.13,speed:TAU/(25*60),phase:0.0,amp:0.10,alpha:0.05},
+    {base:-0.22,spread:0.11,speed:TAU/(22*60),phase:1.4,amp:0.12,alpha:0.04},
+    {base: 0.00,spread:0.16,speed:TAU/(30*60),phase:2.8,amp:0.09,alpha:0.07},
+    {base: 0.23,spread:0.12,speed:TAU/(20*60),phase:4.2,amp:0.11,alpha:0.05},
+    {base: 0.46,spread:0.10,speed:TAU/(27*60),phase:5.6,amp:0.10,alpha:0.04},
+  ];
+  function drawBeam(b){
+    var ox=W*0.5,oy=-60,len=Math.sqrt(W*W+H*H)*1.1;
+    var a=b.base+Math.sin(t*b.speed+b.phase)*b.amp, hs=b.spread/2;
+    var x1=ox+Math.sin(a-hs)*len, y1=oy+Math.cos(a-hs)*len;
+    var x2=ox+Math.sin(a+hs)*len, y2=oy+Math.cos(a+hs)*len;
+    var grad=ctx.createLinearGradient(ox,oy,(x1+x2)/2,(y1+y2)/2);
+    grad.addColorStop(0,  'rgba(201,168,76,'+b.alpha+')');
+    grad.addColorStop(0.5,'rgba(220,185,80,'+(b.alpha*0.55)+')');
+    grad.addColorStop(1,  'rgba(201,168,76,0)');
+    ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(x1,y1); ctx.lineTo(x2,y2);
+    ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
+  }
+  function draw(){ ctx.clearRect(0,0,W,H); beams.forEach(drawBeam); t++; requestAnimationFrame(draw); }
+  draw();
+})();
+</script>
+
+<script>
+/* Gold dust particles */
+(function(){
+  var canvas=document.getElementById('particles-canvas');
+  var ctx=canvas.getContext('2d');
+  var W, H;
+  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+  window.addEventListener('resize', resize);
+  window.addEventListener('orientationchange', function(){ setTimeout(resize,200); });
+  if(window.visualViewport) window.visualViewport.addEventListener('resize', resize);
+  resize();
+  function rand(a,b){ return a+Math.random()*(b-a); }
+  var COUNT=80, particles=[];
+  function init(p,fromBottom){
+    p.x=rand(0,W); p.y=fromBottom?rand(H*0.85,H+10):rand(0,H);
+    p.r=rand(0.5,1.5); p.vy=rand(0.2,0.5); p.vx=rand(-0.12,0.12); p.alpha=rand(0.15,0.5);
+  }
+  for(var i=0;i<COUNT;i++){ var p={}; init(p,false); particles.push(p); }
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(function(p){
+      p.x+=p.vx+rand(-0.06,0.06); p.y-=p.vy;
+      var prog=1-(p.y/H);
+      var fade=prog<0.08?prog/0.08:prog>0.82?1-(prog-0.82)/0.18:1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(201,168,76,'+(p.alpha*fade)+')'; ctx.fill();
+      if(p.y<-2) init(p,true);
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+
+<script>
+/* Swinging lamp */
+(function(){
+  var canvas=document.getElementById('lampCanvas');
+  if(!canvas) return;
+  var ctx=canvas.getContext('2d');
+  canvas.width=300; canvas.height=500;
+  var CX=150, PERIOD=4000, AMP=8*Math.PI/180;
+  function draw(){
+    ctx.clearRect(0,0,300,500);
+    var angle=Math.sin(Date.now()/PERIOD*Math.PI*2)*AMP;
+    ctx.save();
+    ctx.translate(CX,0); ctx.rotate(angle); ctx.translate(-CX,0);
+    ctx.beginPath(); ctx.moveTo(CX,0); ctx.lineTo(CX,80);
+    ctx.strokeStyle='#8B6914'; ctx.lineWidth=2; ctx.stroke();
+    var sx=CX-30,sy=80,sw=60,sh=14,sr=5;
+    ctx.beginPath();
+    ctx.moveTo(sx+sr,sy); ctx.lineTo(sx+sw-sr,sy); ctx.arcTo(sx+sw,sy,sx+sw,sy+sr,sr);
+    ctx.lineTo(sx+sw,sy+sh-sr); ctx.arcTo(sx+sw,sy+sh,sx+sw-sr,sy+sh,sr);
+    ctx.lineTo(sx+sr,sy+sh); ctx.arcTo(sx,sy+sh,sx,sy+sh-sr,sr);
+    ctx.lineTo(sx,sy+sr); ctx.arcTo(sx,sy,sx+sr,sy,sr);
+    ctx.closePath(); ctx.fillStyle='#C9A84C'; ctx.fill();
+    var grad=ctx.createLinearGradient(CX,94,CX,480);
+    grad.addColorStop(0,'rgba(255,180,50,0.08)');
+    grad.addColorStop(0.5,'rgba(255,160,40,0.04)');
+    grad.addColorStop(1,'rgba(255,140,30,0)');
+    ctx.beginPath(); ctx.moveTo(CX,94); ctx.lineTo(CX-130,480); ctx.lineTo(CX+130,480);
+    ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
+    ctx.restore();
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+
+<!-- ══════════════════════════════════════════════
+     ADMIN PANEL — ?admin=rosetta
+══════════════════════════════════════════════ -->
+
+<div id="admin-gate-overlay" style="display:none;position:fixed;inset:0;background:#000;z-index:99999;font-family:'Inter',sans-serif;color:#fff;">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;padding:32px;">
+    <div style="font-size:10px;letter-spacing:0.5em;text-transform:uppercase;color:#555;margin-bottom:8px;">Rosetta CMS</div>
+    <div style="font-size:22px;font-weight:300;color:#fff;margin-bottom:8px;">Enter password</div>
+    <input id="admin-pw-input" type="password" placeholder="Password"
+      style="width:100%;max-width:320px;background:#111;border:1px solid #333;border-radius:4px;color:#fff;font-size:15px;padding:12px 16px;outline:none;"
+      onkeydown="if(event.key==='Enter') document.getElementById('admin-pw-submit').click()"/>
+    <button id="admin-pw-submit"
+      style="width:100%;max-width:320px;background:#fff;color:#000;border:none;border-radius:4px;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;padding:13px;cursor:pointer;">
+      Enter
+    </button>
+    <div id="admin-pw-error" style="font-size:13px;color:#e05555;min-height:18px;"></div>
+  </div>
+</div>
+
+<div id="admin-side-panel" style="display:none;position:fixed;top:0;right:0;width:360px;height:100vh;background:#0d0d0d;border-left:1px solid #222;z-index:99998;overflow-y:auto;font-family:'Inter',sans-serif;color:#fff;">
+  <div style="position:sticky;top:0;background:#0d0d0d;border-bottom:1px solid #1a1a1a;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#C9A84C;">Studio Admin</div>
+    <button onclick="document.getElementById('admin-side-panel').style.display='none'"
+      style="background:none;border:1px solid #333;color:#888;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 12px;border-radius:3px;cursor:pointer;">
+      Close ✕
+    </button>
+  </div>
+  <div style="padding:24px 20px 56px;">
+
+    <div style="font-size:9px;letter-spacing:0.5em;text-transform:uppercase;color:#555;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #1a1a1a;">General</div>
+    <label style="display:block;margin-bottom:16px;">
+      <span style="display:block;font-size:11px;color:#888;margin-bottom:6px;">Business Name</span>
+      <input id="af-business-name" type="text" value="Studio Rental Dallas"
+        style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:9px 12px;outline:none;box-sizing:border-box;"/>
+    </label>
+    <label style="display:block;margin-bottom:24px;">
+      <span style="display:block;font-size:11px;color:#888;margin-bottom:6px;">Tagline / Subtitle</span>
+      <input id="af-tagline" type="text" value="The Cedars, Dallas — Where Creatives Work"
+        style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:9px 12px;outline:none;box-sizing:border-box;"/>
+    </label>
+
+    <div style="font-size:9px;letter-spacing:0.5em;text-transform:uppercase;color:#555;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #1a1a1a;">Location</div>
+    <label style="display:block;margin-bottom:16px;">
+      <span style="display:block;font-size:11px;color:#888;margin-bottom:6px;">Address (new line = line break)</span>
+      <textarea id="af-address" rows="2"
+        style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:9px 12px;outline:none;box-sizing:border-box;resize:vertical;line-height:1.6;">2401 S. Ervay St. Suite 306
+Dallas TX 75215</textarea>
+    </label>
+    <label style="display:block;margin-bottom:24px;">
+      <span style="display:block;font-size:11px;color:#888;margin-bottom:6px;">Location Note</span>
+      <input id="af-location-sub" type="text" value="Just minutes from Downtown Dallas and both major airports"
+        style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:9px 12px;outline:none;box-sizing:border-box;"/>
+    </label>
+
+    <div style="font-size:9px;letter-spacing:0.5em;text-transform:uppercase;color:#555;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #1a1a1a;">Packages</div>
+
+    <div style="margin-bottom:20px;padding:14px;background:#111;border-radius:4px;border:1px solid #1f1f1f;">
+      <div style="font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:#C9A84C;margin-bottom:12px;">Full Day</div>
+      <label style="display:block;margin-bottom:10px;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Name</span><input id="af-pkg1-name" type="text" value="Full Day" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+      <label style="display:block;margin-bottom:10px;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Duration</span><input id="af-pkg1-desc" type="text" value="10 Hours" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+      <label style="display:block;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Price Text</span><input id="af-pkg1-price" type="text" value="Contact for rates" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:12px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+    </div>
+
+    <div style="margin-bottom:20px;padding:14px;background:#111;border-radius:4px;border:1px solid #1f1f1f;">
+      <div style="font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:#C9A84C;margin-bottom:12px;">Half Day</div>
+      <label style="display:block;margin-bottom:10px;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Name</span><input id="af-pkg2-name" type="text" value="Half Day" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+      <label style="display:block;margin-bottom:10px;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Duration</span><input id="af-pkg2-desc" type="text" value="5 Hours" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+      <label style="display:block;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Price Text</span><input id="af-pkg2-price" type="text" value="Contact for rates" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:12px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+    </div>
+
+    <div style="margin-bottom:24px;padding:14px;background:#111;border-radius:4px;border:1px solid #1f1f1f;">
+      <div style="font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:#C9A84C;margin-bottom:12px;">Hourly</div>
+      <label style="display:block;margin-bottom:10px;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Name</span><input id="af-pkg3-name" type="text" value="Hourly" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+      <label style="display:block;margin-bottom:10px;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Duration</span><input id="af-pkg3-desc" type="text" value="2hr minimum" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+      <label style="display:block;"><span style="display:block;font-size:11px;color:#666;margin-bottom:4px;">Price Text</span><input id="af-pkg3-price" type="text" value="Contact for rates" style="width:100%;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:12px;padding:7px 10px;outline:none;box-sizing:border-box;"/></label>
+    </div>
+
+    <div style="font-size:9px;letter-spacing:0.5em;text-transform:uppercase;color:#555;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #1a1a1a;">Contact</div>
+    <label style="display:block;margin-bottom:16px;">
+      <span style="display:block;font-size:11px;color:#888;margin-bottom:6px;">Email</span>
+      <input id="af-contact-email" type="text" value="info@studiorentaldallas.com"
+        style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:9px 12px;outline:none;box-sizing:border-box;"/>
+    </label>
+    <label style="display:block;margin-bottom:24px;">
+      <span style="display:block;font-size:11px;color:#888;margin-bottom:6px;">Phone</span>
+      <input id="af-contact-phone" type="text" value=""
+        style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:9px 12px;outline:none;box-sizing:border-box;"/>
+    </label>
+
+    <div style="font-size:11px;color:#2d2d2d;text-align:center;padding-top:16px;border-top:1px solid #1a1a1a;">Live preview only — changes are not saved</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  if(params.get('admin')!=='rosetta') return;
+
+  var gate=document.getElementById('admin-gate-overlay');
+  var panel=document.getElementById('admin-side-panel');
+  var pw=document.getElementById('admin-pw-input');
+  var err=document.getElementById('admin-pw-error');
+  var btn=document.getElementById('admin-pw-submit');
+
+  gate.style.display='block';
+
+  btn.addEventListener('click',function(){
+    if(pw.value==='Rosetta2026'){
+      gate.style.display='none';
+      panel.style.display='block';
+    } else {
+      err.textContent='Incorrect password';
+      pw.value=''; pw.focus();
+    }
+  });
+  pw.addEventListener('focus',function(){ err.textContent=''; });
+
+  function setAll(attr,val){
+    document.querySelectorAll('[data-af="'+attr+'"]').forEach(function(el){ el.textContent=val; });
+  }
+  function bind(id,fn){
+    var el=document.getElementById(id);
+    if(el) el.addEventListener('input',function(){ fn(el.value); });
+  }
+
+  bind('af-business-name',function(v){
+    setAll('business-name',v);
+    document.title=v+' — The Cedars, Dallas';
+  });
+  bind('af-tagline',function(v){ setAll('tagline',v); });
+  bind('af-address',function(v){
+    document.querySelectorAll('[data-af="address"]').forEach(function(el){
+      el.innerHTML=v.replace(/\n/g,'<br>');
+    });
+  });
+  bind('af-location-sub',function(v){ setAll('location-sub',v); });
+
+  [1,2,3].forEach(function(n){
+    bind('af-pkg'+n+'-name', function(v){ setAll('pkg'+n+'-name',v); });
+    bind('af-pkg'+n+'-desc', function(v){ setAll('pkg'+n+'-desc',v); });
+    bind('af-pkg'+n+'-price',function(v){ setAll('pkg'+n+'-price',v); });
+  });
+
+  bind('af-contact-email',function(v){ setAll('contact-email',v); });
+  bind('af-contact-phone',function(v){ setAll('contact-phone',v); });
+})();
+</script>
+
+</body>
+</html>
