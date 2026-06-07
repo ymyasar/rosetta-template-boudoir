@@ -291,19 +291,10 @@ section{ position:relative; z-index:3; }
   z-index:2;
 }
 .slide-vignette{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.20),radial-gradient(ellipse 80% 60% at 50% 40%,transparent 50%,rgba(0,0,0,0.45) 100%);
-  pointer-events:none;
-  z-index:2;
+  display:none;
 }
 .slide-bottom-fade{
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:38%;
-  background:linear-gradient(to top,rgba(0,0,0,0.82) 0%,rgba(0,0,0,0.4) 45%,transparent 100%);
-  pointer-events:none;
-  z-index:3;
+  display:none;
 }
 .slide-photo{
   position:absolute;
@@ -521,7 +512,7 @@ section{ position:relative; z-index:3; }
    4. RATES
 ══════════════════════════════════════════════ */
 #rates{
-  padding:110px 64px 100px;
+  padding:80px 64px 100px;
   background:#F2EDE4;
 }
 .rates-header{
@@ -1019,7 +1010,7 @@ footer{
    TESTIMONIALS
 ══════════════════════════════════════════════ */
 #testimonials{
-  padding:120px 64px 60px;
+  padding:120px 64px 80px;
   background:#EAE4D9;
   margin-bottom:0;
 }
@@ -1175,7 +1166,7 @@ footer{
 ══════════════════════════════════ -->
 <section id="hero">
   <div class="hero-text-wrapper">
-    <div class="hero-eyebrow" data-af="location">Your City, TX</div>
+    <div class="hero-eyebrow" data-af="location">Your City, ST</div>
     <h1 class="hero-title" data-af="business-name">Photographer Name</h1>
     <span class="hero-rule"></span>
     <p class="hero-subtitle" data-af="tagline">Your story, told well.</p>
@@ -1202,7 +1193,7 @@ footer{
       <div class="about-name" data-af="business-name">Your Name</div>
       <div class="about-location" data-af="location">Your City, ST</div>
       <span class="about-rule"></span>
-      <p class="about-bio" data-af="bio">We&rsquo;re a [Your City]-based studio known for work that speaks before you do. Every client gets our full attention, from first inquiry to final delivery.</p>
+      <p class="about-bio" data-af="bio">We&rsquo;re a Your City-based studio known for work that speaks before you do. Every client gets our full attention, from first inquiry to final delivery.</p>
       <p class="about-tagline" data-af="tagline">Trusted by clients who care about quality.</p>
     </div>
   </div>
@@ -1215,7 +1206,6 @@ footer{
   <div class="space-header">
     <span class="space-supertitle">The Work</span>
     <div class="space-header-row">
-      <span class="space-eyebrow">The Work</span>
       <span class="space-title">The Portfolio</span>
     </div>
   </div>
@@ -1480,7 +1470,7 @@ footer{
 ══════════════════════════════════ -->
 <section id="location">
   <span class="loc-eyebrow">Find Us</span>
-  <div class="loc-title" data-af="location">Your City, TX</div>
+  <div class="loc-title" data-af="location">Your City, ST</div>
   <span class="loc-rule"></span>
   <div class="loc-address" data-af="address">123 Your Street<br>Your City, ST 00000</div>
   <div class="loc-sub" data-af="contact-email">hello@yoursite.com</div>
@@ -1779,7 +1769,7 @@ footer{
     </label>
     <label style="display:block;margin-bottom:24px;">
       <span style="display:block;font-size:11px;color:#888;margin-bottom:6px;">Location</span>
-      <input id="af-location" type="text" value="Your City, TX"
+      <input id="af-location" type="text" value="Your City, ST"
         style="width:100%;background:#111;border:1px solid #2a2a2a;border-radius:3px;color:#fff;font-size:13px;padding:9px 12px;outline:none;box-sizing:border-box;"/>
     </label>
 
