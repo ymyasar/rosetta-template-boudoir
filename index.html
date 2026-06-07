@@ -122,7 +122,7 @@ section{ position:relative; z-index:3; }
   position:relative;
   z-index:1;
   width:100%;
-  perspective:800px;
+  perspective:1000px;
 }
 .hero-eyebrow{
   font-size:9px;
@@ -1116,6 +1116,17 @@ footer{
 .reveal-up{ }
 .reveal-up.is-visible{ }
 
+/* ── Scroll progress bar ── */
+.scroll-progress{
+  position:fixed;
+  top:0;left:0;
+  width:0;
+  height:2px;
+  z-index:9999;
+  background:linear-gradient(90deg,#C9A96E,#8B6C4F);
+  pointer-events:none;
+}
+
 @media(max-width:767px){
   #about{ padding:60px 24px; }
   .about-inner{ grid-template-columns:1fr; gap:40px; }
@@ -1157,6 +1168,8 @@ footer{
 </head>
 <body>
 
+<!-- Scroll progress -->
+<div class="scroll-progress"></div>
 <!-- Light rays canvas -->
 <canvas id="dust-canvas" style="display:none;"></canvas>
 <!-- Dust particles canvas -->
@@ -1581,24 +1594,6 @@ footer{
 })();
 </script>
 
-<script>
-/* Section reveals — GSAP skewY */
-(function(){
-  if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
-    document.querySelectorAll('.reveal-up').forEach(function(el){ el.style.opacity='1'; });
-    return;
-  }
-  document.querySelectorAll('.reveal-up').forEach(function(el){
-    var delay = el.classList.contains('delay-3') ? 0.3 : el.classList.contains('delay-2') ? 0.2 : el.classList.contains('delay-1') ? 0.1 : 0;
-    gsap.fromTo(el,
-      { opacity:0, y:40, skewY:2 },
-      { opacity:1, y:0, skewY:0, duration:1, ease:'expo.out', delay:delay,
-        scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none none' }
-      }
-    );
-  });
-})();
-</script>
 
 <script>
 /* Light rays */
@@ -1705,66 +1700,6 @@ footer{
 })();
 </script>
 
-<script>
-/* GSAP — hero parallax + location reveals */
-(function(){
-  if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
-
-  gsap.to('.hero-text-wrapper', {
-    yPercent: -15, ease: 'none',
-    scrollTrigger: { trigger: '.hero-text-wrapper', start: 'top top', end: 'bottom top', scrub: true }
-  });
-
-  var locEls = [
-    document.querySelector('.loc-eyebrow'),
-    document.querySelector('.loc-title'),
-    document.querySelector('.loc-rule'),
-    document.querySelector('.loc-address'),
-    document.querySelector('.loc-sub')
-  ].filter(Boolean);
-  locEls.forEach(function(el, i){
-    gsap.fromTo(el,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: i * 0.08,
-        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
-      }
-    );
-  });
-})();
-</script>
-
-<script>
-/* Hero word drop-in */
-(function(){
-  if(typeof gsap === 'undefined') return;
-  var params = new URLSearchParams(window.location.search);
-  if(params.get('admin') === 'rosetta') return;
-  var titleEl = document.querySelector('.hero-title');
-  var subtitleEl = document.querySelector('.hero-subtitle');
-  if(!titleEl) return;
-  var words = titleEl.textContent.trim().split(/\s+/);
-  titleEl.innerHTML = '';
-  var spans = words.map(function(word){
-    var s = document.createElement('span');
-    s.textContent = word;
-    s.style.cssText = 'display:inline-block;background:linear-gradient(135deg,#C9A96E 0%,#F5E6C8 38%,#B8935A 62%,#E8D5A3 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-right:0.22em;';
-    titleEl.appendChild(s);
-    return s;
-  });
-  if(subtitleEl) gsap.set(subtitleEl, { opacity: 0 });
-  gsap.fromTo(spans,
-    { opacity: 0, y: 60, rotateX: -20 },
-    { opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'expo.out', stagger: 0.12, delay: 0.3 }
-  );
-  if(subtitleEl){
-    gsap.fromTo(subtitleEl,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', delay: words.length * 0.12 + 0.5 }
-    );
-  }
-})();
-</script>
 
 <script>
 /* Hero dust */
@@ -1800,6 +1735,246 @@ footer{
     requestAnimationFrame(loop);
   }
   loop();
+})();
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   FULL ANIMATION LAYER
+═══════════════════════════════════════════════════════ */
+(function(){
+  if(typeof gsap==='undefined'||typeof ScrollTrigger==='undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+  var isAdmin = new URLSearchParams(window.location.search).get('admin')==='rosetta';
+
+  /* ── Scroll progress (Animation 8) ── */
+  gsap.to('.scroll-progress',{
+    width:'100%', ease:'none',
+    scrollTrigger:{ trigger:'body', start:'top top', end:'bottom bottom', scrub:true }
+  });
+
+  /* ── Hero parallax (always on) ── */
+  gsap.to('.hero-text-wrapper',{
+    yPercent:-15, ease:'none',
+    scrollTrigger:{ trigger:'#hero', start:'top top', end:'bottom top', scrub:true }
+  });
+
+  /* ─────────────────────────────────────────────
+     ANIMATION 1 — HERO ENTRANCE
+  ───────────────────────────────────────────── */
+  (function(){
+    var nav      = document.getElementById('site-nav');
+    var eyebrow  = document.querySelector('.hero-eyebrow');
+    var titleEl  = document.querySelector('.hero-title');
+    var rule     = document.querySelector('.hero-rule');
+    var subtitle = document.querySelector('.hero-subtitle');
+    var cta      = document.querySelector('.hero-cta');
+    var hint     = document.querySelector('.scroll-hint');
+
+    /* Word split with metallic spans */
+    var wordSpans = [];
+    if(titleEl && !isAdmin){
+      var words = titleEl.textContent.trim().split(/\s+/);
+      titleEl.innerHTML = '';
+      words.forEach(function(w){
+        var s = document.createElement('span');
+        s.textContent = w;
+        s.style.cssText = 'display:inline-block;background:linear-gradient(135deg,#8B6C3E 0%,#C9A96E 35%,#8B6C3E 65%,#B8935A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-right:0.22em;';
+        titleEl.appendChild(s);
+        wordSpans.push(s);
+      });
+    }
+
+    if(isAdmin) return;
+
+    gsap.set(nav, { y:-60, opacity:0 });
+    if(eyebrow)  gsap.set(eyebrow,  { y:20, opacity:0 });
+    if(wordSpans.length) gsap.set(wordSpans, { y:80, opacity:0, rotateX:-25 });
+    if(rule)     gsap.set(rule,     { scaleX:0, transformOrigin:'left center' });
+    if(subtitle) gsap.set(subtitle, { y:20, opacity:0 });
+    if(cta)      gsap.set(cta,      { y:20, opacity:0 });
+    if(hint)     gsap.set(hint,     { opacity:0 });
+
+    var tl = gsap.timeline({ defaults:{ ease:'expo.out' } });
+    tl.to(nav, { y:0, opacity:1, duration:0.6 });
+    if(eyebrow)  tl.to(eyebrow,  { y:0, opacity:1, duration:0.5 }, '+=0.1');
+    if(wordSpans.length)
+      tl.to(wordSpans, { y:0, opacity:1, rotateX:0, duration:1.0, stagger:0.1 }, '+=0.1');
+    if(rule)     tl.to(rule,     { scaleX:1, duration:0.6 }, wordSpans.length ? '-=0.3' : '+=0');
+    if(subtitle) tl.to(subtitle, { y:0, opacity:1, duration:0.7 }, '+=0.05');
+    if(cta)      tl.to(cta,      { y:0, opacity:1, duration:0.5 }, '+=0.05');
+    if(hint)     tl.to(hint,     { opacity:1, duration:0.4 }, '+=0.1');
+  })();
+
+  /* ─────────────────────────────────────────────
+     ANIMATION 9 — SECTION LABEL REVEAL (all eyebrows)
+  ───────────────────────────────────────────── */
+  ['.space-supertitle','.inc-eyebrow','.rates-eyebrow',
+   '.book-eyebrow','.testi-label','.about-label','.loc-eyebrow'
+  ].forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el){
+      var fs  = parseFloat(window.getComputedStyle(el).fontSize);
+      var fls = parseFloat(window.getComputedStyle(el).letterSpacing) || 0;
+      gsap.fromTo(el,
+        { letterSpacing:(fls + fs*0.2)+'px', opacity:0 },
+        { letterSpacing:fls+'px', opacity:1, duration:0.8, ease:'expo.out',
+          scrollTrigger:{ trigger:el, start:'top 85%', toggleActions:'play none none none' }
+        }
+      );
+    });
+  });
+
+  /* ─────────────────────────────────────────────
+     ANIMATION 2 — ABOUT SECTION
+  ───────────────────────────────────────────── */
+  (function(){
+    var section = document.getElementById('about');
+    if(!section) return;
+    var st = { trigger:section, start:'top 80%', toggleActions:'play none none none' };
+    var photo   = section.querySelector('.about-photo');
+    var name    = section.querySelector('.about-name');
+    var rule    = section.querySelector('.about-rule');
+    var bio     = section.querySelector('.about-bio');
+    var tagline = section.querySelector('.about-tagline');
+    if(photo) gsap.fromTo(photo,   { x:-80, opacity:0 }, { x:0, opacity:1, duration:1.0, ease:'expo.out', scrollTrigger:st });
+    if(name)  gsap.fromTo(name,    { y:40,  opacity:0 }, { y:0, opacity:1, duration:0.8, ease:'expo.out', delay:0.15, scrollTrigger:st });
+    if(rule){
+      gsap.set(rule, { transformOrigin:'left center' });
+      gsap.fromTo(rule, { scaleX:0, opacity:0 }, { scaleX:1, opacity:1, duration:0.5, ease:'expo.out', delay:0.3, scrollTrigger:st });
+    }
+    [bio, tagline].filter(Boolean).forEach(function(el, i){
+      gsap.fromTo(el, { y:30, opacity:0 }, { y:0, opacity:1, duration:0.7, ease:'expo.out', delay:0.4+i*0.15, scrollTrigger:st });
+    });
+  })();
+
+  /* ─────────────────────────────────────────────
+     ANIMATION 3 — GALLERY CARDS
+  ───────────────────────────────────────────── */
+  document.querySelectorAll('.gallery-slide').forEach(function(slide, i){
+    var from = { opacity:0, y:i===1?80:60, rotateY:0 };
+    if(i===0||i===2) from.rotateY = 4;
+    gsap.fromTo(slide, from,
+      { opacity:1, y:0, rotateY:0, duration:0.9, ease:'expo.out', delay:i*0.12,
+        scrollTrigger:{ trigger:'#the-space', start:'top 85%', toggleActions:'play none none none' }
+      }
+    );
+  });
+
+  /* ─────────────────────────────────────────────
+     ANIMATION 4 — SERVICES GRID
+  ───────────────────────────────────────────── */
+  (function(){
+    var st = { trigger:'#whats-included', start:'top 85%', toggleActions:'play none none none' };
+    var title = document.querySelector('.inc-title');
+    var rule  = document.querySelector('.inc-rule');
+    if(title) gsap.fromTo(title, { y:30, opacity:0 }, { y:0, opacity:1, duration:0.7, ease:'expo.out', scrollTrigger:st });
+    if(rule)  gsap.fromTo(rule,  { scaleX:0, transformOrigin:'center', opacity:0 },
+                                 { scaleX:1, opacity:1, duration:0.5, ease:'expo.out', delay:0.1, scrollTrigger:st });
+    document.querySelectorAll('.inc-item').forEach(function(item, i){
+      gsap.fromTo(item,
+        { y:40, opacity:0 },
+        { y:0, opacity:1, duration:0.7, ease:'power3.out', delay:i*0.08, scrollTrigger:st }
+      );
+    });
+  })();
+
+  /* ─────────────────────────────────────────────
+     ANIMATION 5 — PRICING CARDS
+  ───────────────────────────────────────────── */
+  (function(){
+    var st = { trigger:'#rates', start:'top 85%', toggleActions:'play none none none' };
+    var rTitle = document.querySelector('.rates-title');
+    if(rTitle) gsap.fromTo(rTitle, { y:30, opacity:0 }, { y:0, opacity:1, duration:0.7, ease:'expo.out', scrollTrigger:st });
+    var cards = document.querySelectorAll('.rate-card');
+    /* Middle card arrives last (0 → 0.15 → 0.25) */
+    var delays = [0, 0.25, 0.15];
+    cards.forEach(function(card, i){
+      gsap.fromTo(card,
+        { y:60, opacity:0, scale:0.97 },
+        { y:0, opacity:1, scale:1, duration:0.9, ease:'expo.out', delay:delays[i]||0, scrollTrigger:st }
+      );
+    });
+  })();
+
+  /* ─────────────────────────────────────────────
+     ANIMATION 6 — TESTIMONIALS
+  ───────────────────────────────────────────── */
+  (function(){
+    var st = { trigger:'#testimonials', start:'top 85%', toggleActions:'play none none none' };
+    var title = document.querySelector('.testi-title');
+    var trule = document.querySelector('.testi-rule');
+    if(title){
+      var fls = parseFloat(window.getComputedStyle(title).letterSpacing)||0;
+      gsap.fromTo(title,
+        { letterSpacing:(fls+8)+'px', opacity:0, y:20 },
+        { letterSpacing:fls+'px', opacity:1, y:0, duration:0.8, ease:'expo.out', scrollTrigger:st }
+      );
+    }
+    if(trule){
+      gsap.set(trule, { transformOrigin:'center' });
+      gsap.fromTo(trule, { scaleX:0, opacity:0 }, { scaleX:1, opacity:1, duration:0.5, ease:'expo.out', delay:0.2, scrollTrigger:st });
+    }
+    document.querySelectorAll('.testi-card').forEach(function(card, i){
+      gsap.fromTo(card, { y:50, opacity:0 },
+        { y:0, opacity:1, duration:0.9, ease:'expo.out', delay:i*0.18, scrollTrigger:st });
+      var qm = card.querySelector('.testi-quote-mark');
+      if(qm) gsap.fromTo(qm, { opacity:0 },
+        { opacity:0.25, duration:0.4, ease:'expo.out', delay:i*0.18+0.3, scrollTrigger:st });
+    });
+  })();
+
+  /* ─────────────────────────────────────────────
+     ANIMATION 7 — FIND US + CONTACT FORM
+  ───────────────────────────────────────────── */
+  (function(){
+    var stLoc  = { trigger:'#location',     start:'top 85%', toggleActions:'play none none none' };
+    var stBook = { trigger:'#book-section', start:'top 85%', toggleActions:'play none none none' };
+
+    /* Char split loc-title */
+    var locTitle = document.querySelector('.loc-title');
+    if(locTitle && !isAdmin){
+      var chars = locTitle.textContent.trim().split('');
+      locTitle.innerHTML = '';
+      var cSpans = chars.map(function(ch){
+        var s = document.createElement('span');
+        s.textContent = ch===' '?' ':ch;
+        s.style.cssText = 'display:inline-block;background:linear-gradient(135deg,#8B6C3E 0%,#C9A96E 35%,#8B6C3E 65%,#B8935A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;';
+        locTitle.appendChild(s);
+        return s;
+      });
+      gsap.fromTo(cSpans, { opacity:0, y:20 },
+        { opacity:1, y:0, duration:0.5, ease:'expo.out', stagger:0.03, scrollTrigger:stLoc });
+    } else if(locTitle){
+      gsap.fromTo(locTitle, { y:30, opacity:0 },
+        { y:0, opacity:1, duration:0.8, ease:'expo.out', scrollTrigger:stLoc });
+    }
+
+    var locRule = document.querySelector('.loc-rule');
+    if(locRule){
+      gsap.set(locRule, { transformOrigin:'center' });
+      gsap.fromTo(locRule, { scaleX:0 }, { scaleX:1, duration:0.5, ease:'expo.out', delay:0.3, scrollTrigger:stLoc });
+    }
+    [document.querySelector('.loc-address'), document.querySelector('.loc-sub')].filter(Boolean).forEach(function(el,i){
+      gsap.fromTo(el, { y:30, opacity:0 },
+        { y:0, opacity:1, duration:0.7, ease:'expo.out', delay:0.4+i*0.12, scrollTrigger:stLoc });
+    });
+
+    /* Book section header */
+    var bTitle = document.querySelector('.book-title');
+    var bRule  = document.querySelector('.book-rule');
+    if(bTitle) gsap.fromTo(bTitle, { y:30, opacity:0 }, { y:0, opacity:1, duration:0.7, ease:'expo.out', scrollTrigger:stBook });
+    if(bRule){ gsap.set(bRule,{transformOrigin:'center'}); gsap.fromTo(bRule,{scaleX:0},{scaleX:1,duration:0.5,ease:'expo.out',delay:0.1,scrollTrigger:stBook}); }
+
+    /* Form fields */
+    var fields = document.querySelectorAll('.b-field');
+    fields.forEach(function(f,i){
+      gsap.fromTo(f,{y:30,opacity:0},{y:0,opacity:1,duration:0.6,ease:'expo.out',delay:i*0.1,scrollTrigger:stBook});
+    });
+    var submit = document.querySelector('.b-submit');
+    if(submit) gsap.fromTo(submit,{y:20,opacity:0,scale:0.95},
+      {y:0,opacity:1,scale:1,duration:0.6,ease:'expo.out',delay:fields.length*0.1+0.1,scrollTrigger:stBook});
+  })();
+
 })();
 </script>
 
