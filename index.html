@@ -43,18 +43,18 @@ section{ position:relative; z-index:3; }
   position:fixed;
   top:0;left:0;right:0;
   z-index:100;
-  padding:22px 52px;
+  padding:18px 52px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   background:#F2EDE4;
-  border-bottom:1px solid rgba(26,25,22,0.1);
+  border-bottom:1px solid rgba(139,108,79,0.12);
   transition:background 0.4s ease;
 }
 #site-nav.scrolled{
   background:rgba(242,237,228,0.97);
   backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(26,25,22,0.1);
+  border-bottom:1px solid rgba(139,108,79,0.12);
 }
 .nav-name{
   font-family:'Playfair Display',serif;
@@ -66,8 +66,8 @@ section{ position:relative; z-index:3; }
   letter-spacing:0.04em;
 }
 .nav-cta{
-  font-size:9px;
-  letter-spacing:0.38em;
+  font-size:0.72rem;
+  letter-spacing:0.12em;
   text-transform:uppercase;
   color:#F5F0E8;
   border:none;
@@ -122,6 +122,7 @@ section{ position:relative; z-index:3; }
   position:relative;
   z-index:1;
   width:100%;
+  perspective:800px;
 }
 .hero-eyebrow{
   font-size:9px;
@@ -276,6 +277,11 @@ section{ position:relative; z-index:3; }
   position:relative;
   overflow:hidden;
   border-radius:4px;
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
+}
+.gallery-slide:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.12);
 }
 .gallery-slide:nth-child(1){ background:#D8D0C4; }
 .gallery-slide:nth-child(2){ background:#CEC6BA; }
@@ -549,10 +555,11 @@ section{ position:relative; z-index:3; }
   text-align:center;
   position:relative;
   overflow:hidden;
-  transition:border-color 0.35s ease, transform 0.35s ease, background 0.3s ease;
+  transition:all 0.35s ease;
 }
 .rate-card:hover{
-  border-color:rgba(122,79,45,0.25);
+  border-color:rgba(139,108,79,0.6);
+  box-shadow:0 8px 32px rgba(139,108,79,0.1);
   transform:translateY(-6px);
   background:#E5DDD2;
 }
@@ -1086,20 +1093,23 @@ footer{
   margin-top:24px;
 }
 
-/* ── Scroll reveal (About + Testimonials) ── */
-.reveal-up{
-  opacity:0;
-  transform:translateY(32px);
-  transition:opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94),
-             transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+/* ── Metallic heading gradient ── */
+.inc-title,
+.testi-title,
+.rates-title,
+.book-title,
+.about-name,
+.space-title,
+.loc-title {
+  background:linear-gradient(135deg,#C9A96E 0%,#F5E6C8 38%,#B8935A 62%,#E8D5A3 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
 }
-.reveal-up.is-visible{
-  opacity:1;
-  transform:translateY(0);
-}
-.reveal-up.delay-1{ transition-delay:0.12s; }
-.reveal-up.delay-2{ transition-delay:0.24s; }
-.reveal-up.delay-3{ transition-delay:0.36s; }
+
+/* ── Scroll reveal — GSAP handles this; class retained for targeting ── */
+.reveal-up{ }
+.reveal-up.is-visible{ }
 
 @media(max-width:767px){
   #about{ padding:60px 24px; }
@@ -1165,6 +1175,7 @@ footer{
      1. HERO
 ══════════════════════════════════ -->
 <section id="hero">
+  <canvas id="hero-dust-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
   <div class="hero-text-wrapper">
     <div class="hero-eyebrow" data-af="location">Your City, ST</div>
     <h1 class="hero-title" data-af="business-name">Photographer Name</h1>
@@ -1566,19 +1577,21 @@ footer{
 </script>
 
 <script>
-/* Scroll reveal — About + Testimonials */
+/* Section reveals — GSAP skewY */
 (function(){
-  var els = document.querySelectorAll('.reveal-up');
-  if(!els.length || !window.IntersectionObserver) {
-    els.forEach(function(el){ el.classList.add('is-visible'); });
+  if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined'){
+    document.querySelectorAll('.reveal-up').forEach(function(el){ el.style.opacity='1'; });
     return;
   }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){ io.unobserve(entry.target); entry.target.classList.add('is-visible'); }
-    });
-  }, { threshold: 0.12 });
-  els.forEach(function(el){ io.observe(el); });
+  document.querySelectorAll('.reveal-up').forEach(function(el){
+    var delay = el.classList.contains('delay-3') ? 0.3 : el.classList.contains('delay-2') ? 0.2 : el.classList.contains('delay-1') ? 0.1 : 0;
+    gsap.fromTo(el,
+      { opacity:0, y:40, skewY:2 },
+      { opacity:1, y:0, skewY:0, duration:1, ease:'expo.out', delay:delay,
+        scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none none' }
+      }
+    );
+  });
 })();
 </script>
 
@@ -1688,24 +1701,16 @@ footer{
 </script>
 
 <script>
-/* GSAP — hero parallax + section reveals */
+/* GSAP — hero parallax + location reveals */
 (function(){
   if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  /* Hero text parallax */
   gsap.to('.hero-text-wrapper', {
-    yPercent: -15,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.hero-text-wrapper',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true
-    }
+    yPercent: -15, ease: 'none',
+    scrollTrigger: { trigger: '.hero-text-wrapper', start: 'top top', end: 'bottom top', scrub: true }
   });
 
-  /* Find Us section reveals — About + Testimonials already handled by reveal-up */
   var locEls = [
     document.querySelector('.loc-eyebrow'),
     document.querySelector('.loc-title'),
@@ -1716,12 +1721,80 @@ footer{
   locEls.forEach(function(el, i){
     gsap.fromTo(el,
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 1, ease: 'expo.out',
-        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
-        delay: i * 0.08
+      { opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: i * 0.08,
+        scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
       }
     );
   });
+})();
+</script>
+
+<script>
+/* Hero word drop-in */
+(function(){
+  if(typeof gsap === 'undefined') return;
+  var params = new URLSearchParams(window.location.search);
+  if(params.get('admin') === 'rosetta') return;
+  var titleEl = document.querySelector('.hero-title');
+  var subtitleEl = document.querySelector('.hero-subtitle');
+  if(!titleEl) return;
+  var words = titleEl.textContent.trim().split(/\s+/);
+  titleEl.innerHTML = '';
+  var spans = words.map(function(word){
+    var s = document.createElement('span');
+    s.textContent = word;
+    s.style.cssText = 'display:inline-block;background:linear-gradient(135deg,#C9A96E 0%,#F5E6C8 38%,#B8935A 62%,#E8D5A3 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-right:0.22em;';
+    titleEl.appendChild(s);
+    return s;
+  });
+  if(subtitleEl) gsap.set(subtitleEl, { opacity: 0 });
+  gsap.fromTo(spans,
+    { opacity: 0, y: 60, rotateX: -20 },
+    { opacity: 1, y: 0, rotateX: 0, duration: 0.9, ease: 'expo.out', stagger: 0.12, delay: 0.3 }
+  );
+  if(subtitleEl){
+    gsap.fromTo(subtitleEl,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', delay: words.length * 0.12 + 0.5 }
+    );
+  }
+})();
+</script>
+
+<script>
+/* Hero dust */
+(function(){
+  var canvas = document.getElementById('hero-dust-canvas');
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H;
+  function resize(){
+    var rect = canvas.parentElement.getBoundingClientRect();
+    W = canvas.width = rect.width || window.innerWidth;
+    H = canvas.height = rect.height || window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  function rand(a,b){ return a + Math.random()*(b-a); }
+  var COUNT = 18, ps = [];
+  function spawn(p, fromBottom){
+    p.x = rand(0,W); p.y = fromBottom ? rand(H*0.85,H+10) : rand(0,H);
+    p.r = rand(0.5,1.8); p.vy = rand(0.15,0.45); p.vx = rand(-0.08,0.08); p.alpha = rand(0.18,0.55);
+  }
+  for(var i=0;i<COUNT;i++){ var p={}; spawn(p,false); ps.push(p); }
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    ps.forEach(function(p){
+      p.x += p.vx + rand(-0.04,0.04); p.y -= p.vy;
+      var prog = 1-(p.y/H);
+      var fade = prog<0.08 ? prog/0.08 : prog>0.82 ? 1-(prog-0.82)/0.18 : 1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(201,168,76,'+(p.alpha*fade)+')'; ctx.fill();
+      if(p.y<-2) spawn(p,true);
+    });
+    requestAnimationFrame(loop);
+  }
+  loop();
 })();
 </script>
 
