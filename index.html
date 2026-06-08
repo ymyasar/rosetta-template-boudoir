@@ -1139,18 +1139,20 @@ footer{
 /* ── Camera Rig ────────────────────────────── */
 .camera-rig{
   position:absolute;
-  top:-15px;
-  right:-30px;
-  width:420px;
-  height:270px;
+  top:-20px;
+  right:20px;
+  width:300px;
+  height:320px;
   pointer-events:none;
   z-index:2;
-  transform-origin:410px 10px;
+  transform-origin:260px 20px;
 }
-.camera-svg{
+.arm-svg{
+  position:absolute;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
-  filter:drop-shadow(0 20px 40px rgba(0,0,0,0.25));
 }
 @media(max-width:768px){
   .camera-rig{ display:none; }
@@ -1185,129 +1187,16 @@ footer{
 ══════════════════════════════════ -->
 <section id="hero">
   <div class="camera-rig" id="cameraRig">
-    <svg class="camera-svg" id="cameraSVG" viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#2A2520"/>
-          <stop offset="50%" stop-color="#1A1510"/>
-          <stop offset="100%" stop-color="#0F0C08"/>
-        </linearGradient>
-        <linearGradient id="gripGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#1A1510"/>
-          <stop offset="100%" stop-color="#2A2218"/>
-        </linearGradient>
-        <linearGradient id="lensBarrel1" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#2E2E2E"/>
-          <stop offset="50%" stop-color="#1A1A1A"/>
-          <stop offset="100%" stop-color="#0A0A0A"/>
-        </linearGradient>
-        <linearGradient id="lensBarrel2" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#383838"/>
-          <stop offset="50%" stop-color="#222222"/>
-          <stop offset="100%" stop-color="#111111"/>
-        </linearGradient>
-        <linearGradient id="lensBarrel3" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#2A2A2A"/>
-          <stop offset="50%" stop-color="#181818"/>
-          <stop offset="100%" stop-color="#0D0D0D"/>
-        </linearGradient>
-        <radialGradient id="lensGlassGrad" cx="35%" cy="35%" r="60%">
-          <stop offset="0%" stop-color="#3A4A5A" stop-opacity="0.9"/>
-          <stop offset="40%" stop-color="#1A2030"/>
-          <stop offset="100%" stop-color="#050810"/>
-        </radialGradient>
-        <linearGradient id="hoodGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#252525"/>
-          <stop offset="100%" stop-color="#111111"/>
-        </linearGradient>
-        <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#C9A96E"/>
-          <stop offset="50%" stop-color="#F5E6C8"/>
-          <stop offset="100%" stop-color="#8B6C3E"/>
-        </linearGradient>
-        <filter id="bodyShadow">
-          <feDropShadow dx="4" dy="8" stdDeviation="10" flood-color="rgba(0,0,0,0.5)"/>
-        </filter>
-        <filter id="flashBloom">
-          <feGaussianBlur stdDeviation="12" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <radialGradient id="flashGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1"/>
-          <stop offset="50%" stop-color="#FFF8E8" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#C9A96E" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <line x1="410" y1="10" x2="320" y2="60" stroke="#C9A96E" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
-      <line x1="320" y1="60" x2="300" y2="80" stroke="#B8935A" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
-      <circle cx="300" cy="80" r="5" fill="#8B6C3E" opacity="0.8"/>
-      <path d="M 28 105 Q 10 95 8 120 Q 10 155 28 145 L 55 145 L 55 105 Z" fill="url(#hoodGrad)" stroke="#333" stroke-width="1"/>
-      <path d="M 28 105 Q 15 100 12 108 L 12 132 Q 15 140 28 145" fill="none" stroke="#222" stroke-width="1.5"/>
-      <path d="M 28 105 Q 20 98 16 112 L 16 138 Q 20 142 28 145" fill="none" stroke="#1A1A1A" stroke-width="1"/>
-      <line x1="28" y1="105" x2="55" y2="105" stroke="#444" stroke-width="1.5"/>
-      <line x1="28" y1="145" x2="55" y2="145" stroke="#444" stroke-width="1.5"/>
-      <rect x="55" y="108" width="35" height="34" rx="2" fill="url(#lensBarrel1)"/>
-      <line x1="62" y1="108" x2="62" y2="142" stroke="#333" stroke-width="1.5"/>
-      <line x1="67" y1="108" x2="67" y2="142" stroke="#333" stroke-width="1.5"/>
-      <line x1="72" y1="108" x2="72" y2="142" stroke="#333" stroke-width="1.5"/>
-      <line x1="77" y1="108" x2="77" y2="142" stroke="#333" stroke-width="1.5"/>
-      <line x1="82" y1="108" x2="82" y2="142" stroke="#333" stroke-width="1.5"/>
-      <rect x="90" y="104" width="50" height="42" rx="2" fill="url(#lensBarrel2)"/>
-      <line x1="96" y1="104" x2="96" y2="146" stroke="#2A2A2A" stroke-width="2"/>
-      <line x1="101" y1="104" x2="101" y2="146" stroke="#2A2A2A" stroke-width="2"/>
-      <line x1="106" y1="104" x2="106" y2="146" stroke="#2A2A2A" stroke-width="2"/>
-      <line x1="111" y1="104" x2="111" y2="146" stroke="#2A2A2A" stroke-width="2"/>
-      <line x1="116" y1="104" x2="116" y2="146" stroke="#2A2A2A" stroke-width="2"/>
-      <line x1="121" y1="104" x2="121" y2="146" stroke="#2A2A2A" stroke-width="2"/>
-      <line x1="126" y1="104" x2="126" y2="146" stroke="#2A2A2A" stroke-width="2"/>
-      <line x1="131" y1="104" x2="131" y2="146" stroke="#2A2A2A" stroke-width="2"/>
-      <rect x="90" y="118" width="50" height="2" fill="url(#goldAccent)" opacity="0.6"/>
-      <rect x="95" y="128" width="28" height="10" rx="2" fill="#1A1A1A"/>
-      <text x="109" y="136" font-family="Arial" font-size="5" fill="#888" text-anchor="middle">AF&#8226;MF</text>
-      <circle cx="140" cy="125" r="3" fill="#CC0000"/>
-      <rect x="140" y="107" width="35" height="36" rx="2" fill="url(#lensBarrel3)"/>
-      <line x1="146" y1="107" x2="146" y2="143" stroke="#2A2A2A" stroke-width="1.5"/>
-      <line x1="151" y1="107" x2="151" y2="143" stroke="#2A2A2A" stroke-width="1.5"/>
-      <line x1="156" y1="107" x2="156" y2="143" stroke="#2A2A2A" stroke-width="1.5"/>
-      <line x1="161" y1="107" x2="161" y2="143" stroke="#2A2A2A" stroke-width="1.5"/>
-      <line x1="166" y1="107" x2="166" y2="143" stroke="#2A2A2A" stroke-width="1.5"/>
-      <rect x="175" y="106" width="10" height="38" rx="1" fill="url(#goldAccent)" opacity="0.7"/>
-      <rect x="185" y="75" width="160" height="120" rx="6" fill="url(#bodyGrad)" filter="url(#bodyShadow)"/>
-      <rect x="215" y="55" width="70" height="24" rx="5" fill="url(#bodyGrad)"/>
-      <rect x="222" y="59" width="30" height="16" rx="3" fill="#0A0A0A" stroke="#333" stroke-width="1"/>
-      <rect x="225" y="62" width="24" height="10" rx="2" fill="#111827" opacity="0.9"/>
-      <rect x="248" y="50" width="30" height="7" rx="1" fill="#1A1510" stroke="#555" stroke-width="0.8"/>
-      <ellipse cx="330" cy="66" rx="20" ry="14" fill="#1A1510" stroke="#555" stroke-width="1.5"/>
-      <ellipse cx="330" cy="66" rx="14" ry="9" fill="#252218"/>
-      <line x1="330" y1="53" x2="330" y2="57" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="344" y1="58" x2="341" y2="61" stroke="#888" stroke-width="1" stroke-linecap="round"/>
-      <line x1="316" y1="58" x2="319" y2="61" stroke="#888" stroke-width="1" stroke-linecap="round"/>
-      <text x="330" y="69" font-family="Arial" font-size="5" fill="#C9A96E" text-anchor="middle">M</text>
-      <ellipse cx="298" cy="72" rx="10" ry="7" fill="#2A2218" stroke="#C9A96E" stroke-width="1"/>
-      <ellipse cx="298" cy="72" rx="6" ry="4" fill="#1A1510"/>
-      <rect x="330" y="78" width="18" height="90" rx="6" fill="url(#gripGrad)"/>
-      <line x1="333" y1="82" x2="333" y2="162" stroke="#111" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <line x1="337" y1="82" x2="337" y2="162" stroke="#111" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <line x1="341" y1="82" x2="341" y2="162" stroke="#111" stroke-width="1.5" stroke-dasharray="3 3"/>
-      <rect x="342" y="95" width="8" height="6" rx="2" fill="#1A1510" stroke="#555" stroke-width="0.8"/>
-      <rect x="342" y="108" width="8" height="6" rx="2" fill="#1A1510" stroke="#555" stroke-width="0.8"/>
-      <rect x="342" y="121" width="8" height="6" rx="2" fill="#1A1510" stroke="#555" stroke-width="0.8"/>
-      <rect x="343" y="155" width="6" height="3" rx="1" fill="#CC0000"/>
-      <text x="262" y="102" font-family="Georgia, serif" font-size="11" fill="#C9A96E" font-style="italic" opacity="0.8">Canon</text>
-      <text x="262" y="116" font-family="Arial" font-size="8" fill="#888" letter-spacing="1">EOS R5</text>
-      <circle cx="195" cy="83" r="3" fill="#CC0000" opacity="0.7"/>
-      <rect x="186" y="155" width="20" height="35" rx="2" fill="#151210" stroke="#333" stroke-width="0.8"/>
-      <line x1="196" y1="158" x2="196" y2="187" stroke="#222" stroke-width="1"/>
-      <rect x="185" y="188" width="160" height="8" rx="3" fill="#0F0C08" stroke="#2A2218" stroke-width="1"/>
-      <rect x="250" y="190" width="16" height="6" rx="1" fill="#1A1510" stroke="#555" stroke-width="0.8"/>
-      <circle cx="62" cy="125" r="14" fill="url(#lensGlassGrad)" stroke="#444" stroke-width="1.5"/>
-      <circle cx="62" cy="125" r="10" fill="#050810" stroke="#333" stroke-width="1"/>
-      <ellipse cx="58" cy="121" rx="4" ry="3" fill="white" opacity="0.06" transform="rotate(-20 58 121)"/>
-      <circle id="flashElement" cx="62" cy="125" r="30" fill="url(#flashGrad)" opacity="0" filter="url(#flashBloom)"/>
-      <circle id="flashCore" cx="62" cy="125" r="10" fill="white" opacity="0"/>
-      <rect x="185" y="82" width="6" height="16" rx="2" fill="#1A1510" stroke="#555" stroke-width="0.8"/>
-      <rect x="341" y="82" width="6" height="16" rx="2" fill="#1A1510" stroke="#555" stroke-width="0.8"/>
+    <svg class="arm-svg" viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;">
+      <line id="arm1" x1="260" y1="20" x2="200" y2="100" stroke="#C9A96E" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+      <circle id="elbowJoint" cx="200" cy="100" r="5" fill="#C9A96E" opacity="0.7"/>
+      <line id="arm2" x1="200" y1="100" x2="170" y2="155" stroke="#B8935A" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+      <circle id="mountJoint" cx="170" cy="155" r="4" fill="#8B6C3E" opacity="0.8"/>
     </svg>
+    <div id="cameraBody" style="position:absolute;bottom:0;left:0;width:220px;transform-origin:top center;">
+      <img src="camera.png" style="width:220px;height:auto;filter:drop-shadow(0 20px 50px rgba(0,0,0,0.4));display:block;"/>
+    </div>
+    <div id="flashBloom" style="position:absolute;bottom:30px;left:10px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,248,232,0.6) 40%, rgba(201,169,110,0) 100%);opacity:0;pointer-events:none;filter:blur(8px);"></div>
   </div>
   <canvas id="hero-dust-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
   <div class="hero-text-wrapper">
@@ -2096,10 +1985,20 @@ gsap.to("#cameraRig",{
   ease:"sine.inOut",
   repeat:-1,
   yoyo:true,
-  transformOrigin:"410px 10px"
+  transformOrigin:"260px 20px"
 });
-gsap.to(".camera-svg",{
-  scale:1.015,
+gsap.to("#cameraBody",{
+  rotation:-2,
+  x:4,
+  y:-3,
+  duration:3.8,
+  ease:"sine.inOut",
+  repeat:-1,
+  yoyo:true,
+  transformOrigin:"top center"
+});
+gsap.to("#cameraBody",{
+  scale:1.012,
   duration:3.2,
   ease:"sine.inOut",
   repeat:-1,
@@ -2108,13 +2007,11 @@ gsap.to(".camera-svg",{
 });
 function triggerFlash(){
   var tl = gsap.timeline();
-  tl.to("#flashElement",{opacity:0.9,duration:0.05,ease:"none"})
-    .to("#flashCore",{opacity:1,duration:0.05,ease:"none"},"<")
-    .to("#flashElement",{opacity:0,duration:0.35,ease:"power2.out"})
-    .to("#flashCore",{opacity:0,duration:0.2,ease:"power2.out"},"<");
-  setTimeout(triggerFlash, 7000+Math.random()*8000);
+  tl.to("#flashBloom",{opacity:1,duration:0.04,ease:"none"})
+    .to("#flashBloom",{opacity:0,duration:0.5,ease:"power3.out"});
+  setTimeout(triggerFlash, 7000+Math.random()*9000);
 }
-setTimeout(triggerFlash, 3000+Math.random()*4000);
+setTimeout(triggerFlash, 3000+Math.random()*3000);
 </script>
 
 <!-- ══════════════════════════════════════════════
