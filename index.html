@@ -1796,12 +1796,10 @@ footer{
    '.book-eyebrow','.testi-label','.about-label','.loc-eyebrow'
   ].forEach(function(sel){
     document.querySelectorAll(sel).forEach(function(el){
-      var fs  = parseFloat(window.getComputedStyle(el).fontSize);
-      var fls = parseFloat(window.getComputedStyle(el).letterSpacing) || 0;
       gsap.fromTo(el,
-        { letterSpacing:(fls + fs*0.6)+'px', opacity:0 },
-        { letterSpacing:fls+'px', opacity:1, duration:0.92, ease:'expo.out',
-          scrollTrigger:{ trigger:el, start:'top 85%', toggleActions:'play none none none' }
+        { opacity:0, y:20 },
+        { opacity:1, y:0, duration:0.8, ease:'expo.out',
+          scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none none' }
         }
       );
     });
@@ -1833,6 +1831,15 @@ footer{
   /* ─────────────────────────────────────────────
      ANIMATION 3 — GALLERY CARDS
   ───────────────────────────────────────────── */
+  (function(){
+    var spTitle = document.querySelector('.space-title');
+    if(spTitle) gsap.fromTo(spTitle,
+      { opacity:0, y:20 },
+      { opacity:1, y:0, duration:0.8, ease:'expo.out',
+        scrollTrigger:{ trigger:spTitle, start:'top 88%', toggleActions:'play none none none' }
+      }
+    );
+  })();
   gsap.fromTo('.filmstrip-item',
     { opacity:0, y:60, rotateY:4 },
     { opacity:1, y:0, rotateY:0, duration:1.0, ease:'expo.out', stagger:0.12,
@@ -1847,7 +1854,7 @@ footer{
     var st = { trigger:'#whats-included', start:'top 85%', toggleActions:'play none none none' };
     var title = document.querySelector('.inc-title');
     var rule  = document.querySelector('.inc-rule');
-    if(title) gsap.fromTo(title, { y:48, opacity:0 }, { y:0, opacity:1, duration:0.81, ease:'expo.out', scrollTrigger:st });
+    if(title) gsap.fromTo(title, { opacity:0, y:20 }, { opacity:1, y:0, duration:0.8, ease:'expo.out', scrollTrigger:st });
     if(rule)  gsap.fromTo(rule,  { scaleX:0, transformOrigin:'center', opacity:0 },
                                  { scaleX:1, opacity:1, duration:0.58, ease:'expo.out', delay:0.1, scrollTrigger:st });
     document.querySelectorAll('.inc-item').forEach(function(item, i){
@@ -1864,7 +1871,7 @@ footer{
   (function(){
     var st = { trigger:'#rates', start:'top 85%', toggleActions:'play none none none' };
     var rTitle = document.querySelector('.rates-title');
-    if(rTitle) gsap.fromTo(rTitle, { y:48, opacity:0 }, { y:0, opacity:1, duration:0.81, ease:'expo.out', scrollTrigger:st });
+    if(rTitle) gsap.fromTo(rTitle, { opacity:0, y:20 }, { opacity:1, y:0, duration:0.8, ease:'expo.out', scrollTrigger:st });
     var cards = document.querySelectorAll('.rate-card');
     var delays = [0, 0.25, 0.15];
     cards.forEach(function(card, i){
@@ -1883,10 +1890,9 @@ footer{
     var title = document.querySelector('.testi-title');
     var trule = document.querySelector('.testi-rule');
     if(title){
-      var fls = parseFloat(window.getComputedStyle(title).letterSpacing)||0;
       gsap.fromTo(title,
-        { letterSpacing:(fls+12)+'px', opacity:0, y:32 },
-        { letterSpacing:fls+'px', opacity:1, y:0, duration:0.92, ease:'expo.out', scrollTrigger:st }
+        { opacity:0, y:20 },
+        { opacity:1, y:0, duration:0.8, ease:'expo.out', scrollTrigger:st }
       );
     }
     if(trule){
@@ -1940,7 +1946,7 @@ footer{
 
     var bTitle = document.querySelector('.book-title');
     var bRule  = document.querySelector('.book-rule');
-    if(bTitle) gsap.fromTo(bTitle, { y:48, opacity:0 }, { y:0, opacity:1, duration:0.81, ease:'expo.out', scrollTrigger:stBook });
+    if(bTitle) gsap.fromTo(bTitle, { opacity:0, y:20 }, { opacity:1, y:0, duration:0.8, ease:'expo.out', scrollTrigger:stBook });
     if(bRule){ gsap.set(bRule,{transformOrigin:'center'}); gsap.fromTo(bRule,{scaleX:0},{scaleX:1,duration:0.58,ease:'expo.out',delay:0.1,scrollTrigger:stBook}); }
 
     var fields = document.querySelectorAll('.b-field');
