@@ -46,63 +46,75 @@
       left: 0;
       width: 100%;
       z-index: 100;
-      padding: 22px 48px;
+      padding: 20px 48px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease;
     }
     #site-nav.scrolled {
       background: rgba(17, 17, 17, 0.92);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      padding-top: 14px;
-      padding-bottom: 14px;
     }
     .nav-logo {
       font-family: var(--font-heading);
       font-weight: 500;
-      font-size: 1.5rem;
-      letter-spacing: 0.18em;
+      font-style: italic;
+      font-size: 22px;
+      letter-spacing: 0.08em;
       color: var(--accent);
       text-decoration: none;
     }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 36px;
+      gap: 32px;
       list-style: none;
     }
     .nav-links a {
       font-family: var(--font-body);
       font-weight: 300;
-      font-size: 13px;
-      letter-spacing: 0.12em;
+      font-size: 11px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-primary);
+      color: rgba(245, 240, 235, 0.75);
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: color 0.3s ease;
     }
     .nav-links a:hover {
-      color: var(--accent);
+      color: var(--text-primary);
     }
     .nav-cta {
+      position: relative;
+      display: inline-block;
       font-family: var(--font-body);
       font-weight: 500;
-      font-size: 13px;
-      letter-spacing: 0.1em;
+      font-size: 11px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      border: 1px solid var(--accent);
-      background: transparent;
-      padding: 10px 22px;
       text-decoration: none;
-      transition: background 0.25s ease, color 0.25s ease;
+      background: none;
+      border: none;
+      padding: 0;
       white-space: nowrap;
     }
-    .nav-cta:hover {
+    .nav-cta::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      height: 1px;
       background: var(--accent);
-      color: var(--bg);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s ease;
+    }
+    .nav-cta:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
     /* ─── Hero ─── */
@@ -561,7 +573,6 @@
       }
       .nav-cta {
         font-size: 11px;
-        padding: 8px 16px;
       }
       .hero-content {
         left: 50%;
