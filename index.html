@@ -1124,14 +1124,15 @@ footer{
   .filmstrip-track{ padding:0 20px 120px; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; }
   .filmstrip-item:nth-child(odd){ width:78vw; height:68vw; }
   .filmstrip-item:nth-child(even){ width:68vw; height:60vw; margin-top:24px; }
-  .filmstrip-meta{ margin-top:12px; }
-  .filmstrip-category{ font-size:0.6rem; }
+  .filmstrip-meta{ margin-top:12px; padding-left:4px; }
+  .filmstrip-category{ font-size:0.55rem; letter-spacing:0.14em; }
   .filmstrip-title{ font-size:0.85rem; }
   .filmstrip-counter{ padding-right:20px; }
   .filmstrip-drag-hint{ padding-left:20px; }
   #whats-included{ padding:60px 24px 56px; }
   .inc-grid{ grid-template-columns:repeat(2,1fr); }
-  .inc-item{ padding:30px 22px 26px; }
+  .inc-item{ padding:30px 22px 26px; overflow:visible; }
+  .inc-item a[href="#book-section"]{ font-size:0.55rem; }
   .inc-item-text{ font-size:17px; }
   .inc-icon{ width:30px; height:30px; margin-bottom:16px; }
   #rates{ padding:60px 24px 56px; }
@@ -1144,6 +1145,9 @@ footer{
   .b-grid{ grid-template-columns:1fr; }
   footer{ padding:36px 24px; flex-direction:column; gap:14px; }
   .footer-meta{ text-align:center; }
+  #trust-bar{ flex-direction:column; gap:16px; padding:24px; }
+  #trust-bar span[style*="rgba(139,108,79"]{ display:none; }
+  .about-img-placeholder{ max-height:280px; aspect-ratio:auto; }
 }
 
 </style>
