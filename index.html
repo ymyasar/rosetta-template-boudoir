@@ -1181,8 +1181,8 @@ footer{
      1. HERO
 ══════════════════════════════════ -->
 <section id="hero">
-  <canvas id="ripple-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.38;"></canvas>
-  <canvas id="depth-particles-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.55;"></canvas>
+  <canvas id="ripple-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.7;"></canvas>
+  <canvas id="depth-particles-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.9;"></canvas>
   <canvas id="heroParticles" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.5;"></canvas>
   <!-- Parallax background layer -->
   <div id="heroBg" style="position:absolute;inset:-20%;z-index:0;background:#F2EDE4;pointer-events:none;"></div>
@@ -2345,7 +2345,7 @@ gsap.to(".hero-text-wrapper",{
     color: 0xC9A84C,
     wireframe: true,
     transparent: true,
-    opacity: 0.12
+    opacity: 0.28
   });
   var mesh = new THREE.Mesh(geo, mat);
   mesh.rotation.x = -0.52;
@@ -2370,7 +2370,7 @@ gsap.to(".hero-text-wrapper",{
     t += 0.008;
     for(var i=0; i<pos.count; i++){
       var x = pos.getX(i), y = pos.getY(i);
-      pos.setZ(i, originZ[i] + Math.sin(x*1.8 + t) * 0.08 + Math.cos(y*1.8 + t*0.7) * 0.06);
+      pos.setZ(i, originZ[i] + Math.sin(x*1.8 + t) * 0.18 + Math.cos(y*1.8 + t*0.7) * 0.14);
     }
     pos.needsUpdate = true;
     renderer.render(scene, camera);
@@ -2391,7 +2391,7 @@ gsap.to(".hero-text-wrapper",{
   var camera = new THREE.PerspectiveCamera(75, canvas.clientWidth/canvas.clientHeight, 0.1, 100);
   camera.position.z = 3;
 
-  var COUNT = 280;
+  var COUNT = 400;
   var positions = new Float32Array(COUNT * 3);
   for(var i=0; i<COUNT; i++){
     positions[i*3]   = (Math.random()-0.5)*8;
@@ -2402,9 +2402,9 @@ gsap.to(".hero-text-wrapper",{
   geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   var mat = new THREE.PointsMaterial({
     color: 0xC9A84C,
-    size: 0.028,
+    size: 0.055,
     transparent: true,
-    opacity: 0.7,
+    opacity: 1.0,
     sizeAttenuation: true
   });
   var points = new THREE.Points(geo, mat);
