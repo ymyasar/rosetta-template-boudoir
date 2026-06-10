@@ -279,7 +279,7 @@
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 3px;
+      gap: 8px;
     }
     .portfolio-item {
       aspect-ratio: 3 / 4;
@@ -362,7 +362,19 @@
     #investment {
       padding: 140px 5vw;
       text-align: center;
-      background: #161616;
+      position: relative;
+      background: url('/image/quiet-luxury.jpeg') center top / cover no-repeat;
+    }
+    #investment::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(17, 17, 17, 0.82);
+      z-index: 0;
+    }
+    #investment > * {
+      position: relative;
+      z-index: 1;
     }
     .investment-state {
       font-family: var(--font-heading);
