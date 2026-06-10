@@ -106,16 +106,27 @@
     }
 
     /* ─── Hero ─── */
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    @keyframes outline-pulse {
+      0%, 100% { -webkit-text-stroke: 1.5px rgba(245,240,235,0.4); }
+      50% { -webkit-text-stroke: 1.5px rgba(245,240,235,1); }
+    }
     #hero {
       position: relative;
       height: 100vh;
       overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
       background-image: url('/image/quiet-luxury.jpeg');
       background-size: cover;
       background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      animation: breathe 7s ease-in-out infinite;
+      z-index: 0;
     }
     #hero::before {
       content: '';
@@ -125,58 +136,80 @@
       z-index: 1;
     }
     .hero-content {
-      position: relative;
+      position: absolute;
+      bottom: 10%;
+      left: 6vw;
       z-index: 2;
-      text-align: center;
-      padding: 0 24px;
+      text-align: left;
+      max-width: 640px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
     }
     .hero-headline {
       font-family: var(--font-heading);
       font-weight: 600;
       font-style: italic;
-      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-size: clamp(3.2rem, 6vw, 5.8rem);
       color: var(--text-primary);
-      line-height: 1.1;
-      max-width: 800px;
+      line-height: 1.05;
+      margin: 0;
+    }
+    .outlined-word {
+      color: transparent;
+      -webkit-text-stroke: 1.5px #F5F0EB;
+      font-style: italic;
+      position: relative;
+      animation: outline-pulse 4s ease-in-out infinite;
     }
     .hero-subline {
-      margin-top: 20px;
+      margin-top: 18px;
       font-family: var(--font-body);
       font-weight: 300;
-      font-size: 18px;
+      font-size: 17px;
       color: var(--text-secondary);
-      max-width: 520px;
-      line-height: 1.65;
+      max-width: 420px;
+      line-height: 1.6;
     }
     .hero-cta {
+      position: relative;
       display: inline-block;
-      margin-top: 36px;
+      margin-top: 32px;
       font-family: var(--font-body);
       font-weight: 500;
-      font-size: 14px;
-      letter-spacing: 0.1em;
+      font-size: 13px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--accent);
-      border: 1px solid var(--accent);
-      background: transparent;
-      padding: 14px 36px;
       text-decoration: none;
-      transition: background 0.25s ease, color 0.25s ease;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
     }
-    .hero-cta:hover {
+    .hero-cta::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
       background: var(--accent);
-      color: var(--bg);
+      transform: scaleX(1);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .hero-cta:hover::after {
+      transform-origin: right;
+      transform: scaleX(0);
     }
     .hero-reassurance {
-      margin-top: 12px;
+      margin-top: 10px;
       font-family: var(--font-body);
       font-weight: 300;
-      font-size: 12px;
-      color: var(--text-secondary);
+      font-size: 11px;
       letter-spacing: 0.08em;
+      color: rgba(245, 240, 235, 0.4);
     }
 
     /* ─── Shared ─── */
@@ -527,8 +560,16 @@
         font-size: 11px;
         padding: 8px 16px;
       }
+      .hero-content {
+        left: 24px;
+        bottom: 8%;
+        max-width: calc(100vw - 48px);
+      }
+      .hero-headline {
+        font-size: clamp(2.4rem, 8vw, 3.4rem);
+      }
       .hero-subline {
-        font-size: 16px;
+        font-size: 15px;
       }
       .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -566,9 +607,10 @@
 
   <!-- ─── Hero ─── -->
   <section id="hero">
+    <div class="hero-bg"></div>
     <div class="hero-content">
-      <h1 class="hero-headline">She Already Knew She Was Enough.</h1>
-      <p class="hero-subline">Boudoir photography for the woman who is ready to see herself the way others already do.</p>
+      <h1 class="hero-headline">She Already <span class="outlined-word">Knew</span> She Was Enough.</h1>
+      <p class="hero-subline">This is what it feels like to finally see yourself.</p>
       <a href="#contact" class="hero-cta">Book Your Session</a>
       <p class="hero-reassurance">No commitment. Just a conversation.</p>
     </div>
