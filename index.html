@@ -2330,6 +2330,7 @@ gsap.to(".hero-text-wrapper",{
 
 <script>
 (function(){
+  console.log('ripple init', typeof THREE);
   var canvas = document.getElementById('ripple-canvas');
   if(!canvas) return;
   var renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
@@ -2381,6 +2382,7 @@ gsap.to(".hero-text-wrapper",{
 
 <script>
 (function(){
+  console.log('depth init', typeof THREE);
   var canvas = document.getElementById('depth-particles-canvas');
   if(!canvas) return;
   var renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
