@@ -14,6 +14,7 @@
 :root{
   --font-serif:'Playfair Display',Georgia,serif;
   --font-sans:'DM Sans',sans-serif;
+  --bg-primary:#F2EDE4;
   --accent:#7A4F2D;
   --text-primary:#1A1916;
   --text-secondary:#5C5649;
@@ -221,7 +222,7 @@ section{ position:relative; z-index:3; }
    2. THE SPACE
 ══════════════════════════════════════════════ */
 #the-space{
-  padding:110px 0 88px;
+  padding:110px 0 80px;
   background:#F2EDE4;
   overflow:hidden;
 }
@@ -285,7 +286,7 @@ section{ position:relative; z-index:3; }
 .filmstrip-item:nth-child(even){
   width:320px;
   height:480px;
-  margin-top:60px;
+  margin-top:80px;
 }
 .filmstrip-img-wrap{
   width:100%;
@@ -1118,11 +1119,15 @@ footer{
   #the-space{ padding:60px 0 60px; }
   .space-header{ padding:0 24px 36px; }
   .space-title{ font-size:38px; }
-  .filmstrip-track{ padding:0 24px 20px; }
-  .filmstrip-item:nth-child(odd){ width:72vw; height:52vw; }
-  .filmstrip-item:nth-child(even){ width:56vw; height:42vw; margin-top:32px; }
-  .filmstrip-counter{ padding-right:24px; }
-  .filmstrip-drag-hint{ padding-left:24px; }
+  #mid-cta{ padding:60px 24px; }
+  .filmstrip-track{ padding:0 20px 120px; }
+  .filmstrip-item:nth-child(odd){ width:78vw; height:68vw; }
+  .filmstrip-item:nth-child(even){ width:68vw; height:60vw; margin-top:24px; }
+  .filmstrip-meta{ margin-top:12px; }
+  .filmstrip-category{ font-size:0.6rem; }
+  .filmstrip-title{ font-size:0.85rem; }
+  .filmstrip-counter{ padding-right:20px; }
+  .filmstrip-drag-hint{ padding-left:20px; }
   #whats-included{ padding:60px 24px 56px; }
   .inc-grid{ grid-template-columns:repeat(2,1fr); }
   .inc-item{ padding:30px 22px 26px; }
@@ -1271,6 +1276,12 @@ footer{
     <span class="filmstrip-total">06</span>
   </div>
   <div class="filmstrip-drag-hint">DRAG TO EXPLORE &rsaquo;&rsaquo;&rsaquo;</div>
+</section>
+
+<section id="mid-cta" style="padding:80px 60px;text-align:center;background:var(--bg-primary);">
+  <p style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;" data-af="mid-cta-eyebrow">READY TO START?</p>
+  <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,3.2rem);color:var(--text-primary);margin-bottom:24px;font-style:italic;" data-af="mid-cta-heading">Let&rsquo;s Make Something Together</h2>
+  <a href="#book-section" class="hero-cta" data-af="mid-cta-button" style="display:inline-block;">Book a Session</a>
 </section>
 
 <!-- ══════════════════════════════════
@@ -1431,6 +1442,9 @@ footer{
       <div class="rate-price" data-af="service3-price">Contact for rates</div>
       <a href="#book-section" class="rate-cta">Inquire</a>
     </div>
+  </div>
+  <div style="text-align:center;margin-top:48px;">
+    <a href="#book-section" class="hero-cta" data-af="rates-cta-button">Secure Your Date</a>
   </div>
 </section>
 
@@ -1840,12 +1854,14 @@ footer{
       }
     );
   })();
-  gsap.fromTo('.filmstrip-item',
-    { opacity:0, y:60, rotateY:4 },
-    { opacity:1, y:0, rotateY:0, duration:1.0, ease:'expo.out', stagger:0.12,
-      scrollTrigger:{ trigger:'.filmstrip-track', start:'top 85%', toggleActions:'play none none none' }
-    }
-  );
+  if(window.innerWidth > 767){
+    gsap.fromTo('.filmstrip-item',
+      { opacity:0, y:60, rotateY:4 },
+      { opacity:1, y:0, rotateY:0, duration:1.0, ease:'expo.out', stagger:0.12,
+        scrollTrigger:{ trigger:'.filmstrip-track', start:'top 85%', toggleActions:'play none none none' }
+      }
+    );
+  }
 
   /* ─────────────────────────────────────────────
      ANIMATION 4 — SERVICES GRID
@@ -2269,6 +2285,22 @@ gsap.to(".hero-text-wrapper",{
     camera.updateProjectionMatrix();
     renderer.setSize(w, h);
   });
+})();
+</script>
+
+<div id="sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--bg-primary);border-top:1px solid rgba(139,108,79,0.2);padding:14px 24px;text-align:center;">
+  <a href="#book-section" style="font-family:var(--font-sans);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;" data-af="sticky-cta-text">Book a Session — Get in Touch</a>
+</div>
+
+<script>
+(function(){
+  var bar  = document.getElementById('sticky-cta');
+  var hero = document.getElementById('hero');
+  if(!bar||!hero) return;
+  window.addEventListener('scroll', function(){
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    bar.style.display = heroBottom < 0 ? 'block' : 'none';
+  }, {passive:true});
 })();
 </script>
 
