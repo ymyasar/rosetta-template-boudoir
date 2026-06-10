@@ -124,7 +124,7 @@
       inset: 0;
       background-image: url('/image/quiet-luxury.jpeg');
       background-size: cover;
-      background-position: center;
+      background-position: center 20%;
       animation: breathe 7s ease-in-out infinite;
       z-index: 0;
     }
@@ -138,13 +138,14 @@
     .hero-content {
       position: absolute;
       bottom: 10%;
-      left: 6vw;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 2;
-      text-align: left;
+      text-align: center;
       max-width: 640px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
     }
     .hero-headline {
       font-family: var(--font-heading);
@@ -561,8 +562,10 @@
         padding: 8px 16px;
       }
       .hero-content {
-        left: 24px;
+        left: 50%;
+        transform: translateX(-50%);
         bottom: 8%;
+        width: calc(100vw - 48px);
         max-width: calc(100vw - 48px);
       }
       .hero-headline {
