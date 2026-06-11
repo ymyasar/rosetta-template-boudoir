@@ -316,6 +316,38 @@
       font-size: 0.6em;
       vertical-align: middle;
     }
+    .portfolio-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(201, 169, 110, 0.6);
+      margin-bottom: 0;
+    }
+    .char-headline {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: rgba(245, 240, 235, 0.7);
+      text-align: center;
+      margin-top: 24px;
+    }
+    span.char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    span.char-space {
+      display: inline-block;
+      width: 0.3em;
+    }
+    .char-headline.visible span.char {
+      opacity: 1;
+      transform: translateY(0);
+    }
     .filter-bar {
       display: flex;
       gap: 40px;
@@ -669,11 +701,13 @@
   <!-- PORTFOLIO SECTION -->
   <section id="work">
     <div class="work-header">
+      <div class="portfolio-eyebrow">The Work</div>
       <div class="ticker-wrapper">
         <div class="ticker-track">
           Every image, a confession. <span class="ticker-sep">◆</span> Every image, a confession. <span class="ticker-sep">◆</span> Every image, a confession. <span class="ticker-sep">◆</span> Every image, a confession. <span class="ticker-sep">◆</span> Every image, a confession. <span class="ticker-sep">◆</span> Every image, a confession. <span class="ticker-sep">◆</span> Every image, a confession. <span class="ticker-sep">◆</span> Every image, a confession. <span class="ticker-sep">◆</span>
         </div>
       </div>
+      <div class="char-headline" id="char-headline"><span class="char" style="transition-delay:0s">E</span><span class="char" style="transition-delay:0.03s">v</span><span class="char" style="transition-delay:0.06s">e</span><span class="char" style="transition-delay:0.09s">r</span><span class="char" style="transition-delay:0.12s">y</span><span class="char char-space" style="transition-delay:0.15s"></span><span class="char" style="transition-delay:0.18s">i</span><span class="char" style="transition-delay:0.21s">m</span><span class="char" style="transition-delay:0.24s">a</span><span class="char" style="transition-delay:0.27s">g</span><span class="char" style="transition-delay:0.30s">e</span><span class="char" style="transition-delay:0.33s">,</span><span class="char char-space" style="transition-delay:0.36s"></span><span class="char" style="transition-delay:0.39s">a</span><span class="char char-space" style="transition-delay:0.42s"></span><span class="char" style="transition-delay:0.45s">c</span><span class="char" style="transition-delay:0.48s">o</span><span class="char" style="transition-delay:0.51s">n</span><span class="char" style="transition-delay:0.54s">f</span><span class="char" style="transition-delay:0.57s">e</span><span class="char" style="transition-delay:0.60s">s</span><span class="char" style="transition-delay:0.63s">s</span><span class="char" style="transition-delay:0.66s">i</span><span class="char" style="transition-delay:0.69s">o</span><span class="char" style="transition-delay:0.72s">n</span><span class="char" style="transition-delay:0.75s">.</span></div>
       <div class="filter-bar" id="work-filter-bar">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="intimate">Intimate</button>
@@ -843,6 +877,26 @@
         });
       }, { threshold: 0.3 });
       observer.observe(filterBar);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var charHeadline = document.getElementById('char-headline');
+      if (!charHeadline) return;
+      if (!('IntersectionObserver' in window)) {
+        charHeadline.classList.add('visible');
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            charHeadline.classList.add('visible');
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(charHeadline);
     })();
   </script>
 
