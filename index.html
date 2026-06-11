@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Boudoir photography for women who are ready to see themselves differently.">
-  <title>Elara — Boudoir Photography</title>
+  <title>Valentina Portraiture — Boudoir Photography</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -400,106 +400,278 @@
 
     /* ─── About ─── */
     #about {
-      padding: 120px 5vw;
+      background: var(--bg);
     }
-    .about-inner {
-      max-width: 1100px;
+    .about-grid {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 120px 5vw;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 100px;
       align-items: center;
     }
-    .about-text h2 {
+    .about-label {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .about-heading {
       font-family: var(--font-heading);
       font-weight: 600;
       font-style: italic;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-size: clamp(2rem, 3.5vw, 3rem);
       color: var(--text-primary);
-      margin-top: 16px;
       line-height: 1.15;
+      margin: 0;
     }
-    .about-text p {
+    .about-body {
       font-family: var(--font-body);
       font-weight: 300;
-      font-size: 16px;
-      line-height: 1.8;
+      font-size: 17px;
+      line-height: 1.85;
       color: var(--text-secondary);
-      margin-top: 20px;
+      margin-top: 28px;
     }
-    .about-image-wrap {
+    .about-body + .about-body {
+      margin-top: 16px;
+    }
+    .about-story-link {
+      display: inline-block;
+      margin-top: 40px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .about-photo-wrap {
       position: relative;
     }
-    .about-image-wrap img {
+    .about-photo-wrap img {
       width: 100%;
       aspect-ratio: 4 / 5;
       object-fit: cover;
+      object-position: center;
       display: block;
-      position: relative;
-      z-index: 1;
     }
-    .about-image-wrap::after {
+    .about-photo-wrap::after {
       content: '';
       position: absolute;
-      top: 12px;
-      right: -12px;
-      bottom: -12px;
-      left: 12px;
-      border: 1px solid var(--accent);
-      z-index: 0;
+      top: 14px;
+      right: -14px;
+      bottom: -14px;
+      left: 14px;
+      border: 1px solid rgba(201, 169, 110, 0.2);
+      z-index: -1;
+      pointer-events: none;
     }
 
-    /* ─── Investment / CTA ─── */
-    #investment {
-      padding: 140px 5vw;
+    /* ─── Experience ─── */
+    .experience-section {
+      padding: 120px 5vw;
+      background: #0d0d0d;
+    }
+    .experience-header {
       text-align: center;
-      position: relative;
-      background: url('/image/quiet-luxury.jpeg') center top / cover no-repeat;
+      margin-bottom: 80px;
     }
-    #investment::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(17, 17, 17, 0.82);
-      z-index: 0;
-    }
-    #investment > * {
-      position: relative;
-      z-index: 1;
-    }
-    .investment-state {
-      font-family: var(--font-heading);
+    .section-label-gold {
+      font-family: var(--font-body);
       font-weight: 400;
-      font-style: italic;
-      font-size: 22px;
-      color: var(--text-secondary);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
     }
-    .investment-headline {
+    .experience-heading {
       font-family: var(--font-heading);
       font-weight: 600;
       font-style: italic;
-      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
       color: var(--text-primary);
+      line-height: 1.2;
       margin-top: 16px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.15;
     }
-    .investment-subline {
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .experience-col-num {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 48px;
+      color: rgba(201, 169, 110, 0.2);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .experience-col-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .experience-col-body {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Testimonials ─── */
+    .testimonials-section {
+      padding: 120px 5vw;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 40px 36px;
+      position: relative;
+    }
+    .testimonial-quote-mark {
+      position: absolute;
+      top: 24px;
+      left: 32px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 80px;
+      line-height: 1;
+      color: rgba(201, 169, 110, 0.15);
+      pointer-events: none;
+    }
+    .testimonial-text {
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.85;
+      color: rgba(245, 240, 235, 0.75);
+      font-style: italic;
+      padding-top: 32px;
+    }
+    .testimonial-name {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 24px;
+    }
+
+    /* ─── Booking CTA ─── */
+    .booking-section {
+      padding: 160px 5vw;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background-image: url('/image/bridal-boudoir-portraits.jpeg');
+      background-size: cover;
+      background-position: center;
+    }
+    .booking-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.88);
+      z-index: 0;
+    }
+    .booking-content {
+      position: relative;
+      z-index: 1;
+    }
+    .booking-label {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .booking-headline {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-style: italic;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      color: var(--text-primary);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.1;
+    }
+    .booking-sub {
       font-family: var(--font-body);
       font-weight: 300;
       font-size: 16px;
       color: var(--text-secondary);
       margin-top: 20px;
     }
-    .investment-buttons {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
+    .booking-btn {
+      display: inline-block;
       margin-top: 48px;
-      flex-wrap: wrap;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: none;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .booking-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(1);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .booking-btn:hover::after {
+      transform-origin: right;
+      transform: scaleX(0);
+    }
+    .booking-reassurance {
+      display: block;
+      margin-top: 12px;
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: rgba(245, 240, 235, 0.35);
     }
 
     /* ─── Footer ─── */
@@ -633,12 +805,18 @@
       .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .about-inner {
+      .about-grid {
         grid-template-columns: 1fr;
         gap: 48px;
       }
-      .about-image-wrap { order: -1; }
-      .about-image-wrap::after { display: none; }
+      .about-photo-wrap { order: -1; }
+      .about-photo-wrap::after { display: none; }
+      .experience-grid {
+        grid-template-columns: 1fr;
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
       .footer-grid {
         grid-template-columns: 1fr;
       }
@@ -654,11 +832,11 @@
 
   <!-- ─── Navigation ─── -->
   <nav id="site-nav">
-    <a href="#hero" class="nav-logo">Elara</a>
+    <a href="#hero" class="nav-logo">Valentina Portraiture</a>
     <ul class="nav-links">
       <li><a href="#portfolio">Work</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#investment">Investment</a></li>
+      <li><a href="#booking">Book</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Book Your Session</a>
@@ -723,29 +901,79 @@
 
   <!-- ABOUT SECTION -->
   <section id="about">
-    <div class="about-inner">
-      <div class="about-text">
-        <span class="section-label">About Elara</span>
-        <h2>I photograph the woman you forget to see.</h2>
-        <p>I started Elara because I kept watching women apologise for taking up space. In front of my lens, that stops.</p>
-        <p>Every session is private. Every image is yours. I work slowly, I work quietly, and I work until the light does something honest.</p>
-        <p>Based in London. Available worldwide.</p>
-        <a href="#contact" class="ghost-btn" style="margin-top:36px;">See the full story</a>
+    <div class="about-grid">
+      <div>
+        <div class="about-label">About</div>
+        <h2 class="about-heading">I don't just take photographs. I change how women see themselves.</h2>
+        <p class="about-body">I started Valentina Portraiture because I kept watching women apologise for taking up space. Women who were magnificent and had no idea. I built this studio for them.</p>
+        <p class="about-body">Every session is private, guided, and completely yours. I work with you before, during, and after — until what you see in those images finally matches what everyone else has always seen in you.</p>
+        <a href="#" class="about-story-link">Read my story →</a>
       </div>
-      <div class="about-image-wrap">
-        <img src="/image/boudoir-photographer.jpeg" alt="Elara studio portrait">
+      <div class="about-photo-wrap">
+        <img src="/image/quiet-luxury.jpeg" alt="">
       </div>
     </div>
   </section>
 
-  <!-- CTA SECTION -->
-  <section id="investment">
-    <p class="investment-state">You've been waiting for the right moment.</p>
-    <h2 class="investment-headline">This is what that moment looks like.</h2>
-    <p class="investment-subline">Sessions are limited. Enquiries are always welcome.</p>
-    <div class="investment-buttons">
-      <a href="#contact" class="ghost-btn">Book Your Session</a>
-      <a href="#contact" class="ghost-btn-muted">View Investment Guide</a>
+  <!-- EXPERIENCE SECTION -->
+  <section id="experience" class="experience-section">
+    <div class="experience-header">
+      <div class="section-label-gold">The Experience</div>
+      <h2 class="experience-heading">Every detail is considered. Every moment is yours.</h2>
+    </div>
+    <div class="experience-grid">
+      <div>
+        <div class="experience-col-num">01</div>
+        <div class="experience-col-title">The Consultation</div>
+        <p class="experience-col-body">Before anything else, we talk. I want to understand how you feel about yourself right now — and who you want to see in those images. We plan your styling, your vision, and your comfort together. Nothing happens without your say.</p>
+      </div>
+      <div>
+        <div class="experience-col-num">02</div>
+        <div class="experience-col-title">The Session</div>
+        <p class="experience-col-body">Your session is a private, guided experience. Professional hair and makeup. Champagne if you want it. I direct every pose — you never have to wonder what to do with your hands. By the end, you won't want to leave.</p>
+      </div>
+      <div>
+        <div class="experience-col-num">03</div>
+        <div class="experience-col-title">The Reveal</div>
+        <p class="experience-col-body">One week later, you return for your private Image Reveal. You'll see your photographs for the first time together with me. Women cry. They laugh. They say they had no idea. This is always my favourite part.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section id="testimonials">
+    <div class="testimonials-section">
+      <div class="testimonials-header">
+        <div class="section-label-gold">What They Said</div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <span class="testimonial-quote-mark">"</span>
+          <p class="testimonial-text">Valentina made me feel so comfortable, beautiful, and valued in front of the camera. I went into my boudoir shoot super nervous but she put me at ease and I had an incredible experience. The pictures turned out better than I even could have hoped, and I couldn't be more grateful.</p>
+          <div class="testimonial-name">Addisyn</div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-quote-mark">"</span>
+          <p class="testimonial-text">What an amazing experience all the way around. It was my first experience doing a photo shoot so I wasn't sure what to expect. From the second I walked into my dressing room I knew it would be special. The makeup artist was great. Valentina really is an amazing photographer and made me so comfortable. She really knows her stuff. I felt like a pro by the end. Such great conversations and lots of laughs. Top notch experience and you should see the pictures — stunning.</p>
+          <div class="testimonial-name">Kelly</div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-quote-mark">"</span>
+          <p class="testimonial-text">Valentina created an amazing photo shoot experience. The makeup artist did a fantastic job. She made me feel very comfortable in front of the camera. She has an artistic eye and was able to deliver portraits that are truly special and unique, so much more than your typical headshot. She captured the mood and vibe I had hoped for. Highly recommend.</p>
+          <div class="testimonial-name">Amanda</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING CTA SECTION -->
+  <section id="booking" class="booking-section">
+    <div class="booking-content">
+      <div class="booking-label">Begin Your Experience</div>
+      <h2 class="booking-headline">You've been waiting long enough.</h2>
+      <p class="booking-sub">Sessions are limited. Enquiries are always open.</p>
+      <a href="#contact" class="booking-btn">Book Your Session</a>
+      <span class="booking-reassurance">No commitment. Just a conversation.</span>
     </div>
   </section>
 
@@ -753,7 +981,7 @@
   <footer id="contact">
     <div class="footer-grid">
       <div>
-        <a href="#hero" class="footer-logo">Elara</a>
+        <a href="#hero" class="footer-logo">Valentina Portraiture</a>
         <p class="footer-tagline">For the woman who is ready.</p>
         <div class="footer-socials">
           <a href="#">Instagram</a>
@@ -765,19 +993,19 @@
         <nav class="footer-nav">
           <a href="#work">Work</a>
           <a href="#about">About</a>
-          <a href="#investment">Investment</a>
+          <a href="#booking">Book</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
       <div>
         <span class="footer-col-heading">Get in Touch</span>
         <span class="footer-contact-line">London, United Kingdom</span>
-        <span class="footer-contact-line">hello@elara.co</span>
+        <span class="footer-contact-line">hello@valentinaportraiture.com</span>
         <a href="#contact" class="footer-enquiry">Start your enquiry &rarr;</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Elara. All rights reserved.</span>
+      <span>&copy; 2026 Valentina Portraiture. All rights reserved.</span>
       <a href="https://www.rosettasystemsuk.co.uk">Site by Rosetta Systems</a>
     </div>
   </footer>
