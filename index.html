@@ -779,6 +779,128 @@
     }
 
     /* ─── Mobile ─── */
+    /* ─── About motion ─── */
+    @keyframes drift {
+      0%   { transform: scale(1) translateY(0); }
+      100% { transform: scale(1.05) translateY(-10px); }
+    }
+    .line-reveal {
+      display: block;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    #about.visible .line-reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .about-img-inner {
+      overflow: hidden;
+    }
+    .about-img-inner img {
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    /* ─── Experience step columns ─── */
+    .step-col {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    #experience.visible .step-col {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .step-img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      margin-bottom: 24px;
+      filter: grayscale(30%);
+      transition: filter 0.5s ease;
+      display: block;
+    }
+    .step-col:hover .step-img {
+      filter: grayscale(0%);
+    }
+
+    /* ─── Testimonials rotator ─── */
+    .testimonials-rotator {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      min-height: 380px;
+    }
+    .testimonials-big-quote {
+      display: block;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 110px;
+      color: rgba(201, 169, 110, 0.18);
+      line-height: 0.6;
+      margin-bottom: 24px;
+    }
+    .testimonial-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1s ease;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 16px;
+    }
+    .testimonial-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .testimonial-slide .testimonial-text {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      line-height: 1.6;
+      color: rgba(245, 240, 235, 0.85);
+      padding-top: 0;
+    }
+    .testimonial-slide .testimonial-name {
+      margin-top: 32px;
+    }
+    .testimonial-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .testimonial-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(245, 240, 235, 0.2);
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: background 0.3s ease;
+      flex-shrink: 0;
+    }
+    .testimonial-dot.active {
+      background: var(--accent);
+    }
+
+    /* ─── Booking preamble ─── */
+    .booking-preamble {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 17px;
+      color: rgba(245, 240, 235, 0.5);
+      margin-bottom: 16px;
+    }
+
     @media (max-width: 767px) {
       #site-nav {
         padding: 18px 24px;
@@ -904,13 +1026,19 @@
     <div class="about-grid">
       <div>
         <div class="about-label">About</div>
-        <h2 class="about-heading">I don't just take photographs. I change how women see themselves.</h2>
+        <h2 class="about-heading">
+          <span class="line-reveal" style="transition-delay:0s">I don't just take photographs.</span>
+          <span class="line-reveal" style="transition-delay:0.2s">I change how women</span>
+          <span class="line-reveal" style="transition-delay:0.4s">see themselves.</span>
+        </h2>
         <p class="about-body">I started Valentina Portraiture because I kept watching women apologise for taking up space. Women who were magnificent and had no idea. I built this studio for them.</p>
         <p class="about-body">Every session is private, guided, and completely yours. I work with you before, during, and after — until what you see in those images finally matches what everyone else has always seen in you.</p>
         <a href="#" class="about-story-link">Read my story →</a>
       </div>
       <div class="about-photo-wrap">
-        <img src="/image/quiet-luxury.jpeg" alt="">
+        <div class="about-img-inner">
+          <img src="/image/quiet-luxury.jpeg" alt="">
+        </div>
       </div>
     </div>
   </section>
@@ -922,18 +1050,21 @@
       <h2 class="experience-heading">Every detail is considered. Every moment is yours.</h2>
     </div>
     <div class="experience-grid">
-      <div>
+      <div class="step-col" style="transition-delay:0s">
         <div class="experience-col-num">01</div>
+        <img class="step-img" src="/image/vintage-europe.jpeg" alt="">
         <div class="experience-col-title">The Consultation</div>
         <p class="experience-col-body">Before anything else, we talk. I want to understand how you feel about yourself right now — and who you want to see in those images. We plan your styling, your vision, and your comfort together. Nothing happens without your say.</p>
       </div>
-      <div>
+      <div class="step-col" style="transition-delay:0.25s">
         <div class="experience-col-num">02</div>
+        <img class="step-img" src="/image/boudoir-lifestyle.jpeg" alt="">
         <div class="experience-col-title">The Session</div>
         <p class="experience-col-body">Your session is a private, guided experience. Professional hair and makeup. Champagne if you want it. I direct every pose — you never have to wonder what to do with your hands. By the end, you won't want to leave.</p>
       </div>
-      <div>
+      <div class="step-col" style="transition-delay:0.5s">
         <div class="experience-col-num">03</div>
+        <img class="step-img" src="/image/morning-wedding-day.jpeg" alt="">
         <div class="experience-col-title">The Reveal</div>
         <p class="experience-col-body">One week later, you return for your private Image Reveal. You'll see your photographs for the first time together with me. Women cry. They laugh. They say they had no idea. This is always my favourite part.</p>
       </div>
@@ -946,22 +1077,25 @@
       <div class="testimonials-header">
         <div class="section-label-gold">What They Said</div>
       </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <span class="testimonial-quote-mark">"</span>
+      <span class="testimonials-big-quote">"</span>
+      <div class="testimonials-rotator">
+        <div class="testimonial-slide active">
           <p class="testimonial-text">Valentina made me feel so comfortable, beautiful, and valued in front of the camera. I went into my boudoir shoot super nervous but she put me at ease and I had an incredible experience. The pictures turned out better than I even could have hoped, and I couldn't be more grateful.</p>
           <div class="testimonial-name">Addisyn</div>
         </div>
-        <div class="testimonial-card">
-          <span class="testimonial-quote-mark">"</span>
+        <div class="testimonial-slide">
           <p class="testimonial-text">What an amazing experience all the way around. It was my first experience doing a photo shoot so I wasn't sure what to expect. From the second I walked into my dressing room I knew it would be special. The makeup artist was great. Valentina really is an amazing photographer and made me so comfortable. She really knows her stuff. I felt like a pro by the end. Such great conversations and lots of laughs. Top notch experience and you should see the pictures — stunning.</p>
           <div class="testimonial-name">Kelly</div>
         </div>
-        <div class="testimonial-card">
-          <span class="testimonial-quote-mark">"</span>
+        <div class="testimonial-slide">
           <p class="testimonial-text">Valentina created an amazing photo shoot experience. The makeup artist did a fantastic job. She made me feel very comfortable in front of the camera. She has an artistic eye and was able to deliver portraits that are truly special and unique, so much more than your typical headshot. She captured the mood and vibe I had hoped for. Highly recommend.</p>
           <div class="testimonial-name">Amanda</div>
         </div>
+      </div>
+      <div class="testimonial-dots">
+        <button class="testimonial-dot active" data-index="0"></button>
+        <button class="testimonial-dot" data-index="1"></button>
+        <button class="testimonial-dot" data-index="2"></button>
       </div>
     </div>
   </section>
@@ -969,8 +1103,9 @@
   <!-- BOOKING CTA SECTION -->
   <section id="booking" class="booking-section">
     <div class="booking-content">
+      <p class="booking-preamble">You've seen the work. You've heard the women.</p>
       <div class="booking-label">Begin Your Experience</div>
-      <h2 class="booking-headline">You've been waiting long enough.</h2>
+      <h2 class="booking-headline">Now it's your turn.</h2>
       <p class="booking-sub">Sessions are limited. Enquiries are always open.</p>
       <a href="#contact" class="booking-btn">Book Your Session</a>
       <span class="booking-reassurance">No commitment. Just a conversation.</span>
@@ -1081,6 +1216,81 @@
         });
       }, { threshold: 0.3 });
       observer.observe(filterBar);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var section = document.getElementById('about');
+      if (!section) return;
+      if (!('IntersectionObserver' in window)) {
+        section.classList.add('visible');
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      observer.observe(section);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var section = document.getElementById('experience');
+      if (!section) return;
+      if (!('IntersectionObserver' in window)) {
+        section.querySelectorAll('.step-col').forEach(function (el) {
+          el.style.opacity = 1;
+          el.style.transform = 'none';
+        });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(section);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var slides  = document.querySelectorAll('.testimonial-slide');
+      var dots    = document.querySelectorAll('.testimonial-dot');
+      var current = 0;
+      var timer;
+      if (!slides.length) return;
+
+      function goTo(i) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = i;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function next() { goTo((current + 1) % slides.length); }
+
+      function startTimer() { timer = setInterval(next, 7000); }
+
+      dots.forEach(function (dot, i) {
+        dot.addEventListener('click', function () {
+          clearInterval(timer);
+          goTo(i);
+          startTimer();
+        });
+      });
+
+      startTimer();
     })();
   </script>
 
