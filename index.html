@@ -134,7 +134,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-image: url('/image/quiet-luxury.jpeg');
+      background-image: url('/image/bw-25.jpeg');
       background-size: cover;
       background-position: center 20%;
       animation: breathe 7s ease-in-out infinite;
@@ -376,12 +376,17 @@
       aspect-ratio: 3 / 4;
       overflow: hidden;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .portfolio-item.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+    .portfolio-item.filter-out {
+      opacity: 0 !important;
+      transform: translateY(12px) !important;
+      transition: opacity 0.3s ease !important, transform 0.3s ease !important;
     }
     .portfolio-item.hidden {
       display: none;
@@ -592,7 +597,7 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      background-image: url('/image/bridal-boudoir-portraits.jpeg');
+      background-image: url('/image/bw-30.jpeg');
       background-size: cover;
       background-position: center;
     }
@@ -779,6 +784,17 @@
     }
 
     /* ─── Mobile ─── */
+    /* ─── Scroll reveal ─── */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ─── About motion ─── */
     @keyframes drift {
       0%   { transform: scale(1) translateY(0); }
@@ -994,30 +1010,30 @@
     </div>
 
     <div class="portfolio-grid">
-      <div class="portfolio-item" data-category="intimate"><img src="/image/moscow-session.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="editorial"><img src="/image/boudoir-02.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="intimate"><img src="/image/boudoir-03.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="bridal"><img src="/image/bridal-boudoir-portraits.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="editorial"><img src="/image/boudoir-05.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="fine-art"><img src="/image/whispers-of-desire.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="bridal"><img src="/image/bridal-lingerie.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="intimate"><img src="/image/boudoir-08.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="fine-art"><img src="/image/boudoir-09.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="editorial"><img src="/image/boudoir-10.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="intimate"><img src="/image/boudoir-11.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="bridal"><img src="/image/morning-wedding-day.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="fine-art"><img src="/image/boudoir-13.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="intimate"><img src="/image/boudoir-14.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="editorial"><img src="/image/clean-girl-aesthetic.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="fine-art"><img src="/image/boudoir-16.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="intimate"><img src="/image/curvy-girl-boudoir.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="bridal"><img src="/image/trend-bridal-boudoir.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="editorial"><img src="/image/boudoir-19.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="fine-art"><img src="/image/boudoir-20.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="intimate"><img src="/image/boudoir-21.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="bridal"><img src="/image/bridgeton-vibe.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="editorial"><img src="/image/boudoir-23.jpeg" alt="" loading="lazy"></div>
-      <div class="portfolio-item" data-category="fine-art"><img src="/image/boudoir-24.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="intimate"><img src="/image/bw-01.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="bridal"><img src="/image/bw-02.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="editorial"><img src="/image/bw-03.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="fine-art"><img src="/image/bw-04.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="intimate"><img src="/image/bw-05.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="bridal"><img src="/image/bw-06.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="editorial"><img src="/image/bw-07.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="fine-art"><img src="/image/bw-08.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="intimate"><img src="/image/bw-09.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="bridal"><img src="/image/bw-10.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="editorial"><img src="/image/bw-11.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="fine-art"><img src="/image/bw-12.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="intimate"><img src="/image/bw-13.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="bridal"><img src="/image/bw-14.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="editorial"><img src="/image/bw-15.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="fine-art"><img src="/image/bw-16.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="intimate"><img src="/image/bw-17.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="bridal"><img src="/image/bw-18.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="editorial"><img src="/image/bw-19.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="fine-art"><img src="/image/bw-20.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="intimate"><img src="/image/bw-21.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="bridal"><img src="/image/bw-22.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="editorial"><img src="/image/bw-23.jpeg" alt="" loading="lazy"></div>
+      <div class="portfolio-item" data-category="fine-art"><img src="/image/bw-24.jpeg" alt="" loading="lazy"></div>
     </div>
   </section>
 
@@ -1025,19 +1041,19 @@
   <section id="about">
     <div class="about-grid">
       <div>
-        <div class="about-label">About</div>
+        <div class="about-label scroll-reveal">About</div>
         <h2 class="about-heading">
           <span class="line-reveal" style="transition-delay:0s">I don't just take photographs.</span>
           <span class="line-reveal" style="transition-delay:0.2s">I change how women</span>
           <span class="line-reveal" style="transition-delay:0.4s">see themselves.</span>
         </h2>
-        <p class="about-body">I started Valentina Portraiture because I kept watching women apologise for taking up space. Women who were magnificent and had no idea. I built this studio for them.</p>
-        <p class="about-body">Every session is private, guided, and completely yours. I work with you before, during, and after — until what you see in those images finally matches what everyone else has always seen in you.</p>
-        <a href="#" class="about-story-link">Read my story →</a>
+        <p class="about-body scroll-reveal" style="transition-delay:0.1s">I started Valentina Portraiture because I kept watching women apologise for taking up space. Women who were magnificent and had no idea. I built this studio for them.</p>
+        <p class="about-body scroll-reveal" style="transition-delay:0.2s">Every session is private, guided, and completely yours. I work with you before, during, and after — until what you see in those images finally matches what everyone else has always seen in you.</p>
+        <a href="#" class="about-story-link scroll-reveal" style="transition-delay:0.3s">Read my story →</a>
       </div>
       <div class="about-photo-wrap">
         <div class="about-img-inner">
-          <img src="/image/quiet-luxury.jpeg" alt="">
+          <img src="/image/bw-26.jpeg" alt="">
         </div>
       </div>
     </div>
@@ -1045,26 +1061,26 @@
 
   <!-- EXPERIENCE SECTION -->
   <section id="experience" class="experience-section">
-    <div class="experience-header">
+    <div class="experience-header scroll-reveal">
       <div class="section-label-gold">The Experience</div>
       <h2 class="experience-heading">Every detail is considered. Every moment is yours.</h2>
     </div>
     <div class="experience-grid">
       <div class="step-col" style="transition-delay:0s">
         <div class="experience-col-num">01</div>
-        <img class="step-img" src="/image/vintage-europe.jpeg" alt="">
+        <img class="step-img" src="/image/bw-27.jpeg" alt="">
         <div class="experience-col-title">The Consultation</div>
         <p class="experience-col-body">Before anything else, we talk. I want to understand how you feel about yourself right now — and who you want to see in those images. We plan your styling, your vision, and your comfort together. Nothing happens without your say.</p>
       </div>
       <div class="step-col" style="transition-delay:0.25s">
         <div class="experience-col-num">02</div>
-        <img class="step-img" src="/image/boudoir-lifestyle.jpeg" alt="">
+        <img class="step-img" src="/image/bw-28.jpeg" alt="">
         <div class="experience-col-title">The Session</div>
         <p class="experience-col-body">Your session is a private, guided experience. Professional hair and makeup. Champagne if you want it. I direct every pose — you never have to wonder what to do with your hands. By the end, you won't want to leave.</p>
       </div>
       <div class="step-col" style="transition-delay:0.5s">
         <div class="experience-col-num">03</div>
-        <img class="step-img" src="/image/morning-wedding-day.jpeg" alt="">
+        <img class="step-img" src="/image/bw-29.jpeg" alt="">
         <div class="experience-col-title">The Reveal</div>
         <p class="experience-col-body">One week later, you return for your private Image Reveal. You'll see your photographs for the first time together with me. Women cry. They laugh. They say they had no idea. This is always my favourite part.</p>
       </div>
@@ -1074,11 +1090,11 @@
   <!-- TESTIMONIALS SECTION -->
   <section id="testimonials">
     <div class="testimonials-section">
-      <div class="testimonials-header">
+      <div class="testimonials-header scroll-reveal">
         <div class="section-label-gold">What They Said</div>
       </div>
-      <span class="testimonials-big-quote">"</span>
-      <div class="testimonials-rotator">
+      <span class="testimonials-big-quote scroll-reveal" style="transition-delay:0.1s">"</span>
+      <div class="testimonials-rotator scroll-reveal" style="transition-delay:0.2s">
         <div class="testimonial-slide active">
           <p class="testimonial-text">Valentina made me feel so comfortable, beautiful, and valued in front of the camera. I went into my boudoir shoot super nervous but she put me at ease and I had an incredible experience. The pictures turned out better than I even could have hoped, and I couldn't be more grateful.</p>
           <div class="testimonial-name">Addisyn</div>
@@ -1092,7 +1108,7 @@
           <div class="testimonial-name">Amanda</div>
         </div>
       </div>
-      <div class="testimonial-dots">
+      <div class="testimonial-dots scroll-reveal" style="transition-delay:0.3s">
         <button class="testimonial-dot active" data-index="0"></button>
         <button class="testimonial-dot" data-index="1"></button>
         <button class="testimonial-dot" data-index="2"></button>
@@ -1102,7 +1118,7 @@
 
   <!-- BOOKING CTA SECTION -->
   <section id="booking" class="booking-section">
-    <div class="booking-content">
+    <div class="booking-content scroll-reveal">
       <p class="booking-preamble">You've seen the work. You've heard the women.</p>
       <div class="booking-label">Begin Your Experience</div>
       <h2 class="booking-headline">Now it's your turn.</h2>
@@ -1115,7 +1131,7 @@
   <!-- FOOTER -->
   <footer id="contact">
     <div class="footer-grid">
-      <div>
+      <div class="scroll-reveal" style="transition-delay:0s">
         <a href="#hero" class="footer-logo">Valentina Portraiture</a>
         <p class="footer-tagline">For the woman who is ready.</p>
         <div class="footer-socials">
@@ -1123,7 +1139,7 @@
           <a href="#">Pinterest</a>
         </div>
       </div>
-      <div>
+      <div class="scroll-reveal" style="transition-delay:0.15s">
         <span class="footer-col-heading">Navigate</span>
         <nav class="footer-nav">
           <a href="#work">Work</a>
@@ -1132,7 +1148,7 @@
           <a href="#contact">Contact</a>
         </nav>
       </div>
-      <div>
+      <div class="scroll-reveal" style="transition-delay:0.3s">
         <span class="footer-col-heading">Get in Touch</span>
         <span class="footer-contact-line">London, United Kingdom</span>
         <span class="footer-contact-line">hello@valentinaportraiture.com</span>
@@ -1161,20 +1177,54 @@
 
   <script>
     (function () {
-      var btns  = document.querySelectorAll('.filter-btn');
-      var items = document.querySelectorAll('.portfolio-item');
+      var btns   = document.querySelectorAll('.filter-btn');
+      var items  = document.querySelectorAll('.portfolio-item');
+      var locked = false;
+
       btns.forEach(function (btn) {
         btn.addEventListener('click', function () {
+          if (locked) return;
+          locked = true;
           btns.forEach(function (b) { b.classList.remove('active'); });
           btn.classList.add('active');
           var cat = btn.getAttribute('data-filter');
+
+          // Step 1: fade out all currently visible items
           items.forEach(function (item) {
-            if (cat === 'all' || item.getAttribute('data-category') === cat) {
-              item.classList.remove('hidden');
-            } else {
-              item.classList.add('hidden');
+            if (!item.classList.contains('hidden')) {
+              item.classList.add('filter-out');
             }
           });
+
+          setTimeout(function () {
+            var visibleItems = [];
+            items.forEach(function (item) {
+              item.classList.remove('filter-out');
+              var matches = (cat === 'all' || item.getAttribute('data-category') === cat);
+              if (matches) {
+                item.classList.remove('hidden');
+                item.classList.remove('visible');
+                visibleItems.push(item);
+              } else {
+                item.classList.add('hidden');
+              }
+            });
+
+            // Force reflow so browser sees opacity 0 before animating in
+            if (visibleItems.length) void visibleItems[0].offsetWidth;
+
+            // Stagger fade-in
+            visibleItems.forEach(function (item, i) {
+              item.style.transitionDelay = (i * 0.05) + 's';
+              item.classList.add('visible');
+            });
+
+            // Clean up delays and unlock
+            setTimeout(function () {
+              visibleItems.forEach(function (item) { item.style.transitionDelay = ''; });
+              locked = false;
+            }, visibleItems.length * 50 + 500);
+          }, 300);
         });
       });
     })();
@@ -1190,11 +1240,13 @@
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
+            var idx = Array.prototype.indexOf.call(items, entry.target);
+            entry.target.style.transitionDelay = (idx % 3 * 0.08) + 's';
             entry.target.classList.add('visible');
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.08 });
+      }, { threshold: 0.15 });
       items.forEach(function (el) { observer.observe(el); });
     })();
   </script>
@@ -1291,6 +1343,26 @@
       });
 
       startTimer();
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.scroll-reveal');
+      if (!els.length) return;
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (el) { observer.observe(el); });
     })();
   </script>
 
